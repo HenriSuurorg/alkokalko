@@ -1,6 +1,6 @@
 import React from "react";
 import "./Style.css";
-import UserForm from "./form";
+import UserForm from "./components/form";
 
 function App() {
 	return <UserForm />;
