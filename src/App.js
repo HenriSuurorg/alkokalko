@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.css";
+import UserForm from "./form";
 
 function App() {
-	return <div className="App">Koolon de</div>;
+	return <UserForm />;
 }
 
 export default App;
