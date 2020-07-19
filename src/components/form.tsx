@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import "../Style.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import ParamCalculator from "./paramCalculator";
 
-const UserForm = () => {
-	const [age, setAge] = useState();
-	const [weight, setWeight] = useState();
-	const [height, setHeight] = useState();
-	const [sex, setSex] = useState();
-	const [stomachState, setStomachState] = useState();
-	const [drinkingHabits, setDrinkingHabits] = useState();
+const UserForm: React.FC = () => {
+	const [age, setAge] = useState<string>("");
+	const [weight, setWeight] = useState<string >("");
+	const [height, setHeight] = useState<string>("");
+	const [sex, setSex] = useState<string>("");
+	const [stomachState, setStomachState] = useState<number | string>();
+	const [drinkingHabits, setDrinkingHabits] = useState<number | string>();
+
 
 	const validationSchema = Yup.object({
 		weight: Yup.number()
@@ -92,6 +94,9 @@ const UserForm = () => {
 			{sex && <h1>Sex: {sex}</h1>}
 			{stomachState && <h1>My stomach is: {stomachState}</h1>}
 			{drinkingHabits && <h1>I drink: {drinkingHabits}</h1>}
+			<div>
+				<ParamCalculator weight={weight} height={height} sex={sex} age={age} stomachState={stomachState} drinkingHabits={drinkingHabits}/>
+			</div>
 		</div>
 	);
 };
