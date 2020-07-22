@@ -1,18 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "../Style.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import ParamCalculator from "./paramCalculator";
+import userParamCalc from "./userParamCalc";
 
 const UserForm: React.FC = () => {
-	const [age, setAge] = useState<string>("");
-	const [weight, setWeight] = useState<string >("");
-	const [height, setHeight] = useState<string>("");
-	const [sex, setSex] = useState<string>("");
-	const [stomachState, setStomachState] = useState<number | string>();
-	const [drinkingHabits, setDrinkingHabits] = useState<number | string>();
-
-
 	const validationSchema = Yup.object({
 		weight: Yup.number()
 			.max(320, "Sisesta oma kaal kilogrammides")
@@ -46,12 +38,14 @@ const UserForm: React.FC = () => {
 					drinkingHabits: ""
 				}}
 				onSubmit={values => {
-					setHeight(values.height);
-					setWeight(values.weight);
-					setAge(values.age);
-					setStomachState(values.stomachState);
-					setSex(values.sex);
-					setDrinkingHabits(values.drinkingHabits);
+					userParamCalc(
+						values.weight,
+						values.height,
+						values.age,
+						values.sex,
+						values.stomachState,
+						values.drinkingHabits
+					);
 				}}
 				validationSchema={validationSchema}
 			>
@@ -88,15 +82,6 @@ const UserForm: React.FC = () => {
 					</Form>
 				)}
 			</Formik>
-			{age && <h1>{age} years old</h1>}
-			{height && <h1>{height} cm</h1>}
-			{weight && <h1>{weight} kg</h1>}
-			{sex && <h1>Sex: {sex}</h1>}
-			{stomachState && <h1>My stomach is: {stomachState}</h1>}
-			{drinkingHabits && <h1>I drink: {drinkingHabits}</h1>}
-			<div>
-				<ParamCalculator weight={weight} height={height} sex={sex} age={age} stomachState={stomachState} drinkingHabits={drinkingHabits}/>
-			</div>
 		</div>
 	);
 };
