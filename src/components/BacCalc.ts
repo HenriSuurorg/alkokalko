@@ -1,10 +1,10 @@
 const exampleDrinks = [
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.9", ABV: 40 },
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "2.56", ABV: 40 },
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.56", ABV: 40 },
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.76", ABV: 40 },
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.86", ABV: 40 },
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "2.86", ABV: 40 },
+  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.90", ABV: "40" },
+  { type: "vodka", volume: "50", unit: "ml", timePassed: "2.56", ABV: "40" },
+  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.56", ABV: "40" },
+  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.76", ABV: "40" },
+  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.86", ABV: "40" },
+  { type: "vodka", volume: "50", unit: "ml", timePassed: "2.86", ABV: "40" },
 ];
 
 const BACCalc = ({
@@ -24,14 +24,14 @@ const BACCalc = ({
         type: string;
         volume: string;
         unit: string;
-        ABV: number;
+        ABV: string;
         timePassed: string;
       },
       b: {
         type: string;
         volume: string;
         unit: string;
-        ABV: number;
+        ABV: string;
         timePassed: string;
       }
     ) => parseFloat(b.timePassed) - parseFloat(a.timePassed)
@@ -44,7 +44,7 @@ const BACCalc = ({
         type: string;
         volume: string;
         unit: string;
-        ABV: number;
+        ABV: string;
         timePassed: string;
       },
       i: number
@@ -52,7 +52,9 @@ const BACCalc = ({
       let alcoholMass: number = 0;
       if (curDrink.unit === "ml") {
         alcoholMass =
-          parseFloat(curDrink.volume) * 0.0007893 * (curDrink.ABV / 100);
+          parseFloat(curDrink.volume) *
+          0.0007893 *
+          (parseFloat(curDrink.ABV) / 100);
       }
 
       let x =

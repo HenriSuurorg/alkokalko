@@ -31,16 +31,26 @@ const userParamCalc = (
       (1 / parseFloat(weight)) *
         (0.62115 - 3.1665 * (parseFloat(height) / 100));
   }
-
   if (stomachState === "full") absorptionRate = 2.3;
+  else if (stomachState === "mostly-full") absorptionRate = 3.35;
   else if (stomachState === "average") absorptionRate = 4.4;
-  else if (stomachState === "empty") absorptionRate = 6.5;
+  else if (stomachState === "mostly-empty") {
+    absorptionRate = 5.45;
+    eliminationRate = -0.0025;
+  } else if (stomachState === "empty") {
+    absorptionRate = 6.5;
+    eliminationRate = -0.005;
+  }
 
-  if (drinkingHabits === "often") eliminationRate = 0.02;
-  else if (drinkingHabits === "sometimes") eliminationRate = 0.0175;
-  else if (drinkingHabits === "rarely") eliminationRate = 0.015;
+  if (drinkingHabits === "everyday") eliminationRate = eliminationRate + 0.0225;
+  else if (drinkingHabits === "often") eliminationRate = eliminationRate + 0.02;
+  else if (drinkingHabits === "sometimes")
+    eliminationRate = eliminationRate + 0.0175;
+  else if (drinkingHabits === "rarely")
+    eliminationRate = eliminationRate + 0.015;
 
   BACCalc({ widmarkFactor, eliminationRate, absorptionRate, weight });
+  return { widmarkFactor, eliminationRate, absorptionRate, weight };
 };
 
 export default userParamCalc;
