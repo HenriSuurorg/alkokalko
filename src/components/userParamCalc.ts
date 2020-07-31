@@ -49,7 +49,6 @@ const userParamCalc = (
   else if (drinkingHabits === "rarely")
     eliminationRate = eliminationRate + 0.015;
 
-  BACCalc({ widmarkFactor, eliminationRate, absorptionRate, weight });
   return { widmarkFactor, eliminationRate, absorptionRate, weight };
 };
 

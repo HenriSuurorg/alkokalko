@@ -10,13 +10,23 @@ interface Props {
     ABV: string,
     timePassed: string
   ) => void;
+  duplicateDrinkData: {
+    initialType: string;
+    initialVolume: string;
+    initialUnit: string;
+    initialABV: string;
+  } | null;
 }
 
-const DrinkForm: React.FC<Props> = ({ closeForm }) => {
+const DrinkForm: React.FC<Props> = ({ closeForm, duplicateDrinkData }) => {
   const validationSchema = Yup.object({
-    type: Yup.string().required("See väli on kohustuslik"),
+    type: Yup.string()
+      .required("See väli on kohustuslik")
+      .min(4, "See väli on kohustuslik"),
     volume: Yup.number().required("See väli on kohustuslik"),
-    unit: Yup.string().required("See väli on kohustuslik"),
+    unit: Yup.string()
+      .required("See väli on kohustuslik")
+      .min(2, "See väli on kohustuslik"),
     timePassed: Yup.number().required("See väli on kohustuslik"),
     ABV: Yup.number()
       .max(100, "Siseta joogi kangus protsentides")
@@ -36,11 +46,11 @@ const DrinkForm: React.FC<Props> = ({ closeForm }) => {
   return (
     <Formik
       initialValues={{
-        type: "",
-        volume: "",
-        unit: "",
+        type: duplicateDrinkData ? duplicateDrinkData.initialType : "",
+        volume: duplicateDrinkData ? duplicateDrinkData.initialVolume : "",
+        unit: duplicateDrinkData ? duplicateDrinkData.initialUnit : "",
         timePassed: "",
-        ABV: "",
+        ABV: duplicateDrinkData ? duplicateDrinkData.initialABV : "",
       }}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
@@ -56,7 +66,7 @@ const DrinkForm: React.FC<Props> = ({ closeForm }) => {
           <Field name="volume" placeholder="suurus (ml)" />
           <ErrorMessage name="volume" />
           <Field name="unit" as="select">
-            <option value="25">ühik</option>
+            <option value="5">ühik</option>
             <option value="ml">ml</option>
           </Field>
           <Field name="timePassed" placeholder="aega möödas (h)" />

@@ -1,24 +1,24 @@
-const exampleDrinks = [
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.90", ABV: "40" },
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "2.56", ABV: "40" },
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.56", ABV: "40" },
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.76", ABV: "40" },
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "1.86", ABV: "40" },
-  { type: "vodka", volume: "50", unit: "ml", timePassed: "2.86", ABV: "40" },
-];
-
 const BACCalc = ({
   widmarkFactor,
   absorptionRate,
   eliminationRate,
   weight,
+  drinks,
 }: {
   widmarkFactor: number;
   absorptionRate: number;
   eliminationRate: number;
-  weight: string;
+  weight: number;
+  drinks: {
+    type: string;
+    volume: string;
+    unit: string;
+    ABV: string;
+    timePassed: string;
+  }[];
 }) => {
-  const drinksInChronologicalOrder = exampleDrinks.sort(
+  // --- creates a new array where the drinks are in chronological order --- //
+  const drinksInChronologicalOrder = drinks.sort(
     (
       a: {
         type: string;
@@ -37,7 +37,9 @@ const BACCalc = ({
     ) => parseFloat(b.timePassed) - parseFloat(a.timePassed)
   );
 
-  let totalBac = drinksInChronologicalOrder.reduce(
+  // --- calculates current Blood alcohol level --- //
+
+  let currentBAC = drinksInChronologicalOrder.reduce(
     (
       acc: number,
       curDrink: {
@@ -49,7 +51,7 @@ const BACCalc = ({
       },
       i: number
     ) => {
-      let alcoholMass: number = 0;
+      let alcoholMass: number = 0; // Mass of alcohol in the current drink
       if (curDrink.unit === "ml") {
         alcoholMass =
           parseFloat(curDrink.volume) *
@@ -60,7 +62,7 @@ const BACCalc = ({
       let x =
         alcoholMass *
         (1 - Math.E ** (-absorptionRate * parseFloat(curDrink.timePassed)));
-      let y = widmarkFactor * parseFloat(weight);
+      let y = widmarkFactor * weight;
 
       const curDrinkBac = (x / y) * 100;
       let curBac = 0;
@@ -86,7 +88,7 @@ const BACCalc = ({
     },
     0
   );
-  console.log("total BAC: ", totalBac);
+  return currentBAC;
 };
 
 export default BACCalc;
