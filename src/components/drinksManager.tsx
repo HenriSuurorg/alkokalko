@@ -58,7 +58,9 @@ const DrinksManager: React.FC<Props> = ({ match, history }) => {
   };
 
   const deleteDrink = (i: number) => {
-    setDrinks((prevDrinks) => prevDrinks.splice(i, 1));
+    const temp = [...drinks];
+    temp.splice(i, 1);
+    setDrinks(temp);
   };
 
   const closeForm = (
