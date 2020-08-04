@@ -1,21 +1,26 @@
 import React from "react";
 import { RouteComponentProps } from "react-router";
 import { Line } from "react-chartjs-2";
+import "../Style.css";
 
 interface Props
   extends RouteComponentProps<
-    {},
+    { id: string },
     {},
     { currentBac: number; graphBacData: number[] }
   > {}
 
-const BacInformatin: React.FC<Props> = ({ location }) => {
+const BacInformatin: React.FC<Props> = ({ location, history, match }) => {
   const { currentBac, graphBacData } = location.state;
   let labels = [];
 
   for (let n in graphBacData) {
     labels.push((parseFloat(n) * 0.01).toFixed(3));
   }
+
+  const clickHandler = () => {
+    history.push(`/drinks/${match.params.id}`);
+  };
 
   const graphData = {
     labels: labels,
@@ -41,12 +46,13 @@ const BacInformatin: React.FC<Props> = ({ location }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Your blood alcohol content: {currentBac}</h1>
       <h1>
         You will be sober in {Math.round(parseFloat(labels[labels.length - 1]))}{" "}
         hours
       </h1>
+      <button onClick={clickHandler}>Edit drinks</button>
       <Line data={graphData} legend={{ display: false }} />
     </div>
   );

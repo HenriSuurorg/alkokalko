@@ -15,3 +15,7 @@
 .drink-card > h3 {
   margin: 0 1.5rem;
 }
+
+.container {
+  max-height: 100%;
+}

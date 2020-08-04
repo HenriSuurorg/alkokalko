@@ -10,8 +10,9 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={UserForm} />
-        <Route path="/drinks/:id" component={drinksManager} />
-        <Route path="/bacinformation" component={BacInformatin} />
+        <Route path="/drinks/:id" exact component={drinksManager} />
+        <Route path="/bacinformation/:id" exact component={BacInformatin} />
+        <Route path="/" render={() => <h1>404</h1>} />
       </Switch>
     </BrowserRouter>
   );

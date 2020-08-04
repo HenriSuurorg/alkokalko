@@ -49,9 +49,16 @@ const UserForm: React.FC<Props> = ({ history }) => {
             values.stomachState,
             values.drinkingHabits
           );
-          history.push(
-            `/drinks/${params.widmarkFactor};${params.eliminationRate};${params.absorptionRate};${params.weight}`
-          );
+          history.push({
+            pathname: `/drinks/${params.widmarkFactor};${params.eliminationRate};${params.absorptionRate};${params.weight}`,
+            state: {
+              weight: values.weight,
+              height: values.height,
+              age: values.age,
+              stomachState: values.stomachState,
+              drinkingHabits: values.drinkingHabits,
+            },
+          });
         }}
         validationSchema={validationSchema}
       >

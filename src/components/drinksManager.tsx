@@ -1,11 +1,26 @@
 import React, { useState } from "react";
+import useLocalState from "./useLocalState";
 import NewDrinkForm from "./drinkForm";
 import BacCalc from "./BacCalc";
 import { RouteComponentProps } from "react-router";
 import "../Style.css";
 import graphDataCalc from "./graphDataCalc";
 
-interface Props extends RouteComponentProps<{ id: string }> {}
+interface Props
+  extends RouteComponentProps<
+    { id: string },
+    {} //,
+    //    {
+    //      currentBac: number;
+    //      graphBacData: number[];
+    //      weight: string;
+    //      height: string;
+    //      age: string;
+    //      sex: string;
+    //      stomachState: string;
+    //      drinkinkgHabits: string;
+    //    }
+  > {}
 
 const DrinksManager: React.FC<Props> = ({ match, history }) => {
   const userParameters = match.params.id.split(";");
@@ -20,15 +35,7 @@ const DrinksManager: React.FC<Props> = ({ match, history }) => {
     parseFloat(userParameters[2])
   );
   const [weight, setWeight] = useState<number>(parseFloat(userParameters[3]));
-  const [drinks, setDrinks] = useState<
-    {
-      type: string;
-      volume: string;
-      unit: string;
-      ABV: string;
-      timePassed: string;
-    }[]
-  >([]);
+  const [drinks, setDrinks] = useLocalState("drinks", []);
   const [newDrink, setNewDrink] = useState(false);
   const [duplicateDrinkData, setDuplicateDrinkData] = useState<null | {
     initialType: string;
@@ -92,23 +99,34 @@ const DrinksManager: React.FC<Props> = ({ match, history }) => {
       drinks,
     });
     history.push({
-      pathname: "/bacinformation",
+      pathname: `/bacinformation/${match.params.id}`,
       state: { currentBac, graphBacData },
     });
   };
 
-  const drinkCards = drinks.map((drink, i) => {
-    return (
-      <div className="drink-card" key={i}>
-        <button onClick={() => duplicateDrink(drink)}>+</button>
-        <h3>{drink.type}</h3>
-        <h3>{drink.volume + drink.unit} </h3>
-        <h3>{drink.ABV}%</h3>
-        <h3>{drink.timePassed} tundi tagasi</h3>
-        <button onClick={() => deleteDrink(i)}>DEL</button>
-      </div>
-    );
-  });
+  const drinkCards = drinks.map(
+    (
+      drink: {
+        type: string;
+        volume: string;
+        unit: string;
+        ABV: string;
+        timePassed: string;
+      },
+      i: number
+    ) => {
+      return (
+        <div className="drink-card" key={i}>
+          <button onClick={() => duplicateDrink(drink)}>+</button>
+          <h3>{drink.type}</h3>
+          <h3>{drink.volume + drink.unit} </h3>
+          <h3>{drink.ABV}%</h3>
+          <h3>{drink.timePassed} tundi tagasi</h3>
+          <button onClick={() => deleteDrink(i)}>DEL</button>
+        </div>
+      );
+    }
+  );
 
   return (
     <div className="container">
