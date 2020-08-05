@@ -50,6 +50,10 @@ const DrinksManager: React.FC<Props> = ({ match, history }) => {
 		setDrinks(temp);
 	};
 
+	const editUser = () => {
+		history.push("/");
+	};
+
 	const closeForm = (
 		type: string,
 		volume: string,
@@ -114,6 +118,7 @@ const DrinksManager: React.FC<Props> = ({ match, history }) => {
 			<div className="button-container">
 				<button onClick={addDrink}>ADD DRINK</button>
 				<button onClick={calculateBAC}>CALCULATE BAC</button>
+				<button onClick={editUser}>EDIT USER</button>
 			</div>
 			{newDrink && (
 				<div className="drink-form">
