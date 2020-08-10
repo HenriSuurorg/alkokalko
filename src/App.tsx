@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import drinksManager from "./components/drinksManager";
 import BacInformatin from "./components/bacInformation";
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
