@@ -1,0 +1,19 @@
+:root {
+	--primary-color: #dc3806;
+	--primary-shadow: 0 5px 10px rgba(154, 160, 185, 0.05), 0 15px 40px rgba(166, 173, 201, 0.2);
+	--primary-text-color: #3f4649;
+	--font-family: "B612", sans-serif;
+}
+
+body {
+	background-color: #efefef;
+	margin: 0;
+	padding: 0;
+}
+
+.form__container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: white;
+}

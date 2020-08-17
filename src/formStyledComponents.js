@@ -33,8 +33,8 @@ export const Label = styled.label`
 	display: flex;
 	font-size: 15px;
 
-	label:before {
-			position: absolute;
+	:before {
+		position: absolute;
 		content: "";
 		height: 15px;
 		width: 15px;

@@ -1,5 +1,5 @@
 import React from "react";
-import "../Style.css";
+import "../userForm.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import userParamCalc from "./userParamCalc";
@@ -76,7 +76,7 @@ const UserForm: React.FC<Props> = ({ history }) => {
 				{({ touched, errors, values, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
 					<Form>
 						<FlexRow>
-							<Radio
+							<input
 								type="radio"
 								name="sex"
 								value="male"
@@ -84,13 +84,8 @@ const UserForm: React.FC<Props> = ({ history }) => {
 								checked={values.sex === "male"}
 								onChange={() => setFieldValue("sex", "male")}
 							/>
-							<Label
-								for="male"
-								borderStyle={values.sex === "male" ? "1px solid #DC3806" : "1px solid #B1B4B6"}
-							>
-								Male
-							</Label>
-							<Radio
+							<label htmlFor="male">Male</label>
+							<input
 								type="radio"
 								name="sex"
 								value="female"
@@ -98,12 +93,7 @@ const UserForm: React.FC<Props> = ({ history }) => {
 								checked={values.sex === "female"}
 								onChange={() => setFieldValue("sex", "female")}
 							/>
-							<Label
-								for="female"
-								borderStyle={values.sex === "female" ? "1px solid #DC3806" : "1px solid #B1B4B6"}
-							>
-								Female
-							</Label>
+							<label htmlFor="female">Female</label>
 						</FlexRow>
 						<Input
 							name="weight"
@@ -132,9 +122,9 @@ const UserForm: React.FC<Props> = ({ history }) => {
 						/>
 						<Input
 							name="stomachState"
-							as="select"
 							onChange={handleChange}
 							onBlur={handleBlur}
+							as="select"
 							value={values.stomachState}
 						>
 							<option value="25">Kui täis oli su kõht enne esimest jooki</option>
@@ -146,9 +136,9 @@ const UserForm: React.FC<Props> = ({ history }) => {
 						</Input>
 						<Input
 							name="drinkingHabits"
-							as="select"
 							onChange={handleChange}
 							onBlur={handleBlur}
+							as="select"
 							value={values.drinkingHabits}
 						>
 							<option value="25">Kui tihti tarbid tavaliselt alkoholi?</option>
