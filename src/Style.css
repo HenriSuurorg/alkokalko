@@ -90,5 +90,6 @@ body {
 }
 
 .home__button:hover {
-	color: black;
+	background-color: #e35d34;
+	cursor: pointer;
 }
