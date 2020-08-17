@@ -1,10 +1,11 @@
 import React from "react";
 import "../Style.css";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import userParamCalc from "./userParamCalc";
 import { RouteComponentProps } from "react-router";
 import useLocalState from "./useLocalState";
+import { Form, Input, Button, FlexRow, Radio, Label } from "../formStyledComponents.js";
 
 interface Props extends RouteComponentProps {}
 
@@ -72,39 +73,92 @@ const UserForm: React.FC<Props> = ({ history }) => {
 				}}
 				validationSchema={validationSchema}
 			>
-				{props => (
+				{({ touched, errors, values, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
 					<Form>
-						<Field name="weight" placeholder="Kaal (kg)" />
-						<ErrorMessage name="weight" />
-						<Field name="height" placeholder="Pikkus (cm)" />
-						<ErrorMessage name="height" />
-						<Field name="age" placeholder="Vanus (aastat)" />
-						<ErrorMessage name="age" />
-						<Field name="sex" as="select">
-							<option value="25">sugu</option>
-							<option value="male">mees</option>
-							<option value="female">naine</option>
-						</Field>
-						<ErrorMessage name="sex" />
-						<Field name="stomachState" as="select">
+						<FlexRow>
+							<Radio
+								type="radio"
+								name="sex"
+								value="male"
+								id="male"
+								checked={values.sex === "male"}
+								onChange={() => setFieldValue("sex", "male")}
+							/>
+							<Label
+								for="male"
+								borderStyle={values.sex === "male" ? "1px solid #DC3806" : "1px solid #B1B4B6"}
+							>
+								Male
+							</Label>
+							<Radio
+								type="radio"
+								name="sex"
+								value="female"
+								id="female"
+								checked={values.sex === "female"}
+								onChange={() => setFieldValue("sex", "female")}
+							/>
+							<Label
+								for="female"
+								borderStyle={values.sex === "female" ? "1px solid #DC3806" : "1px solid #B1B4B6"}
+							>
+								Female
+							</Label>
+						</FlexRow>
+						<Input
+							name="weight"
+							placeholder="Kaal (kg)"
+							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.weight}
+							type="text"
+						/>
+						<Input
+							name="height"
+							placeholder="Pikkus (cm)"
+							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.height}
+							type="text"
+						/>
+
+						<Input
+							name="age"
+							placeholder="Vanus (aastat)"
+							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.age}
+							type="text"
+						/>
+						<Input
+							name="stomachState"
+							as="select"
+							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.stomachState}
+						>
 							<option value="25">Kui täis oli su kõht enne esimest jooki</option>
 							<option value="full">täis</option>
 							<option value="mostly-full">pigem täis</option>
 							<option value="average">keskmiselt</option>
 							<option value="mostly-empty">pigem tühi</option>
 							<option value="empty">tühi</option>
-						</Field>
-						<ErrorMessage name="stomachState" />
-						<Field name="drinkingHabits" as="select">
+						</Input>
+						<Input
+							name="drinkingHabits"
+							as="select"
+							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.drinkingHabits}
+						>
 							<option value="25">Kui tihti tarbid tavaliselt alkoholi?</option>
 							<option value="everyday">Iga päev</option>
 							<option value="often">Mitu korda nädalas</option>
 							<option value="sometimes">Korra nädalas</option>
 							<option value="rarely">Vähem kui korra nädalas</option>
-						</Field>
-						<ErrorMessage name="drinkingHabits" />
-						<button type="submit">Kinnita</button>
-						<pre>{JSON.stringify(props.values, null, 2)}</pre>
+						</Input>
+						<Button type="submit">Kinnita</Button>
+						<pre>{JSON.stringify(values, null, 2)}</pre>
 					</Form>
 				)}
 			</Formik>
