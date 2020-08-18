@@ -1,11 +1,11 @@
 import React from "react";
-import "../userForm.css";
+import "../userFormStyle.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import userParamCalc from "./userParamCalc";
 import { RouteComponentProps } from "react-router";
 import useLocalState from "./useLocalState";
-import { Form, Input, Button, FlexRow, Radio, Label } from "../formStyledComponents.js";
+import { Input, Form } from "../formStyledComponents.js";
 
 interface Props extends RouteComponentProps {}
 
@@ -75,26 +75,48 @@ const UserForm: React.FC<Props> = ({ history }) => {
 			>
 				{({ touched, errors, values, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
 					<Form>
-						<FlexRow>
-							<input
-								type="radio"
-								name="sex"
-								value="male"
-								id="male"
-								checked={values.sex === "male"}
-								onChange={() => setFieldValue("sex", "male")}
-							/>
-							<label htmlFor="male">Male</label>
-							<input
-								type="radio"
-								name="sex"
-								value="female"
-								id="female"
-								checked={values.sex === "female"}
-								onChange={() => setFieldValue("sex", "female")}
-							/>
-							<label htmlFor="female">Female</label>
-						</FlexRow>
+						<div className="radio-buttons">
+							<div className="radio__container flex-start">
+								<input
+									type="radio"
+									name="sex"
+									value="male"
+									id="male"
+									checked={values.sex === "male"}
+									onChange={() => setFieldValue("sex", "male")}
+									style={{ display: "none" }}
+								/>
+								<label
+									className="radio__label"
+									htmlFor="male"
+									style={{
+										border: values.sex === "male" ? "1px solid #dc3806" : "1px solid #818181"
+									}}
+								>
+									Mees
+								</label>
+							</div>
+							<div className="radio__container flex-end">
+								<input
+									type="radio"
+									name="sex"
+									value="female"
+									id="female"
+									checked={values.sex === "female"}
+									onChange={() => setFieldValue("sex", "female")}
+									style={{ display: "none" }}
+								/>
+								<label
+									className="radio__label"
+									htmlFor="female"
+									style={{
+										border: values.sex === "female" ? "1px solid #dc3806" : "1px solid #818181"
+									}}
+								>
+									Naine
+								</label>
+							</div>
+						</div>
 						<Input
 							name="weight"
 							placeholder="Kaal (kg)"
@@ -122,9 +144,9 @@ const UserForm: React.FC<Props> = ({ history }) => {
 						/>
 						<Input
 							name="stomachState"
+							as="select"
 							onChange={handleChange}
 							onBlur={handleBlur}
-							as="select"
 							value={values.stomachState}
 						>
 							<option value="25">Kui täis oli su kõht enne esimest jooki</option>
@@ -136,9 +158,9 @@ const UserForm: React.FC<Props> = ({ history }) => {
 						</Input>
 						<Input
 							name="drinkingHabits"
+							as="select"
 							onChange={handleChange}
 							onBlur={handleBlur}
-							as="select"
 							value={values.drinkingHabits}
 						>
 							<option value="25">Kui tihti tarbid tavaliselt alkoholi?</option>
@@ -147,7 +169,7 @@ const UserForm: React.FC<Props> = ({ history }) => {
 							<option value="sometimes">Korra nädalas</option>
 							<option value="rarely">Vähem kui korra nädalas</option>
 						</Input>
-						<Button type="submit">Kinnita</Button>
+						<button type="submit">Kinnita</button>
 						<pre>{JSON.stringify(values, null, 2)}</pre>
 					</Form>
 				)}
