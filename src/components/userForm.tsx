@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import userParamCalc from "./userParamCalc";
 import { RouteComponentProps } from "react-router";
 import useLocalState from "./useLocalState";
-import { Input, Form } from "../formStyledComponents.js";
+import { Input } from "../formStyledComponents.js";
 
 interface Props extends RouteComponentProps {}
 
@@ -52,6 +52,7 @@ const UserForm: React.FC<Props> = ({ history }) => {
 						values.stomachState,
 						values.drinkingHabits
 					);
+					console.log(params);
 					setLocalStorageParams({
 						weight: values.weight,
 						height: values.height,
@@ -73,10 +74,26 @@ const UserForm: React.FC<Props> = ({ history }) => {
 				}}
 				validationSchema={validationSchema}
 			>
-				{({ touched, errors, values, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
-					<Form>
-						<div className="radio-buttons">
-							<div className="radio__container flex-start">
+				{({
+					touched,
+					errors,
+					values,
+					handleChange,
+					handleBlur,
+					handleSubmit,
+					setFieldValue,
+					isValid
+				}) => (
+					<div className="userform__container">
+						<form className="form__container">
+							<div className="Logo Logo__userform">
+								<h1>Alko-</h1>
+								<h1>Kalko</h1>
+							</div>
+							<div className="userform__title-container">
+								<h2>Sisesta oma füüsilised näitajad</h2>
+							</div>
+							<div className="userform__radio-container left-element">
 								<input
 									type="radio"
 									name="sex"
@@ -87,7 +104,7 @@ const UserForm: React.FC<Props> = ({ history }) => {
 									style={{ display: "none" }}
 								/>
 								<label
-									className="radio__label"
+									className="userform__radio-label"
 									htmlFor="male"
 									style={{
 										border: values.sex === "male" ? "1px solid #dc3806" : "1px solid #818181"
@@ -96,7 +113,7 @@ const UserForm: React.FC<Props> = ({ history }) => {
 									Mees
 								</label>
 							</div>
-							<div className="radio__container flex-end">
+							<div className="userform__radio-container right-element">
 								<input
 									type="radio"
 									name="sex"
@@ -107,71 +124,119 @@ const UserForm: React.FC<Props> = ({ history }) => {
 									style={{ display: "none" }}
 								/>
 								<label
-									className="radio__label"
+									className="userform__radio-label"
 									htmlFor="female"
 									style={{
-										border: values.sex === "female" ? "1px solid #dc3806" : "1px solid #818181"
+										border: values.sex === "female" ? "0.5px solid #dc3806" : "0.5px solid #B1B4B6"
 									}}
 								>
 									Naine
 								</label>
 							</div>
-						</div>
-						<Input
-							name="weight"
-							placeholder="Kaal (kg)"
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.weight}
-							type="text"
-						/>
-						<Input
-							name="height"
-							placeholder="Pikkus (cm)"
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.height}
-							type="text"
-						/>
 
-						<Input
-							name="age"
-							placeholder="Vanus (aastat)"
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.age}
-							type="text"
-						/>
-						<Input
-							name="stomachState"
-							as="select"
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.stomachState}
-						>
-							<option value="25">Kui täis oli su kõht enne esimest jooki</option>
-							<option value="full">täis</option>
-							<option value="mostly-full">pigem täis</option>
-							<option value="average">keskmiselt</option>
-							<option value="mostly-empty">pigem tühi</option>
-							<option value="empty">tühi</option>
-						</Input>
-						<Input
-							name="drinkingHabits"
-							as="select"
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.drinkingHabits}
-						>
-							<option value="25">Kui tihti tarbid tavaliselt alkoholi?</option>
-							<option value="everyday">Iga päev</option>
-							<option value="often">Mitu korda nädalas</option>
-							<option value="sometimes">Korra nädalas</option>
-							<option value="rarely">Vähem kui korra nädalas</option>
-						</Input>
-						<button type="submit">Kinnita</button>
-						<pre>{JSON.stringify(values, null, 2)}</pre>
-					</Form>
+							<h4
+								className="left-element userform__description"
+								style={{ color: errors.weight && touched.weight ? "#ff0033" : "#3f4649" }}
+							>
+								Sisesta oma kaal kilogrammides
+							</h4>
+							<Input
+								name="weight"
+								placeholder="Kaal (kg)"
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.weight}
+								type="text"
+								className="right-element userform__text-input"
+							/>
+
+							<h4
+								className="left-element userform__description"
+								style={{ color: errors.height && touched.height ? "#ff0033" : "#3f4649" }}
+							>
+								Sisesta oma pikkus sentimeetrites
+							</h4>
+							<Input
+								name="height"
+								placeholder="Pikkus (cm)"
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.height}
+								type="text"
+								className="right-element userform__text-input"
+							/>
+
+							<h4
+								className="left-element userform__description"
+								style={{ color: errors.age && touched.age ? "#ff0033" : "#3f4649" }}
+							>
+								Sisesta oma vanus aastates
+							</h4>
+							<Input
+								name="age"
+								placeholder="Vanus (aastat)"
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.age}
+								type="text"
+								className="right-element userform__text-input"
+							/>
+
+							<h4
+								className="left-element userform__description"
+								style={{
+									color: errors.stomachState && touched.stomachState ? "#ff0033" : "#3f4649"
+								}}
+							>
+								Kui tühi oli su kõht enne <br /> alkoholi tarbimist?
+							</h4>
+							<Input
+								name="stomachState"
+								as="select"
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.stomachState}
+								className="right-element userform__select-input"
+							>
+								<option value="25"></option>
+								<option value="full">täis</option>
+								<option value="mostly-full">pigem täis</option>
+								<option value="average">keskmiselt</option>
+								<option value="mostly-empty">pigem tühi</option>
+								<option value="empty">tühi</option>
+							</Input>
+
+							<h4
+								className="left-element userform__description"
+								style={{
+									color: errors.drinkingHabits && touched.drinkingHabits ? "#ff0033" : "#3f4649"
+								}}
+							>
+								Kui tihti tarbid korraga rohkem <br /> kui 3 ühikut alkoholi?
+							</h4>
+							<Input
+								name="drinkingHabits"
+								as="select"
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.drinkingHabits}
+								className="right-element userform__select-input"
+							>
+								<option value="25"></option>
+								<option value="everyday">Iga päev</option>
+								<option value="often">Mitu korda nädalas</option>
+								<option value="sometimes">Korra nädalas</option>
+								<option value="rarely">Vähem kui korra nädalas</option>
+							</Input>
+							<button
+								onClick={() => handleSubmit()}
+								className="full-element userform__button"
+								disabled={isValid && touched.age ? false : true}
+							>
+								Kinnita
+							</button>
+						</form>
+					</div>
 				)}
 			</Formik>
 		</div>

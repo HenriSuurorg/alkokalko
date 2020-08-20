@@ -51,7 +51,7 @@ const DrinksManager: React.FC<Props> = ({ match, history }) => {
 	};
 
 	const editUser = () => {
-		history.push("/");
+		history.push("/kasutaja");
 	};
 
 	const closeForm = (
