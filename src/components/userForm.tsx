@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import userParamCalc from "./userParamCalc";
 import { RouteComponentProps } from "react-router";
 import useLocalState from "./useLocalState";
-import { Input } from "../formStyledComponents.js";
 
 interface Props extends RouteComponentProps {}
 
@@ -36,12 +35,12 @@ const UserForm: React.FC<Props> = ({ history }) => {
 		<div>
 			<Formik
 				initialValues={{
-					weight: localStorageParams ? localStorageParams.weight : "",
-					height: localStorageParams ? localStorageParams.height : "",
-					age: localStorageParams ? localStorageParams.age : "",
-					sex: localStorageParams ? localStorageParams.sex : "",
-					stomachState: localStorageParams ? localStorageParams.stomachState : "",
-					drinkingHabits: localStorageParams ? localStorageParams.drinkingHabits : ""
+					weight: localStorageParams.weight || "",
+					height: localStorageParams.height || "",
+					age: localStorageParams.age || "",
+					sex: localStorageParams.sex || "",
+					stomachState: localStorageParams.stomachState || "",
+					drinkingHabits: localStorageParams.drinkingHabits || ""
 				}}
 				onSubmit={values => {
 					const params = userParamCalc(
@@ -140,7 +139,7 @@ const UserForm: React.FC<Props> = ({ history }) => {
 							>
 								Sisesta oma kaal kilogrammides
 							</h4>
-							<Input
+							<input
 								name="weight"
 								placeholder="Kaal (kg)"
 								onChange={handleChange}
@@ -156,7 +155,7 @@ const UserForm: React.FC<Props> = ({ history }) => {
 							>
 								Sisesta oma pikkus sentimeetrites
 							</h4>
-							<Input
+							<input
 								name="height"
 								placeholder="Pikkus (cm)"
 								onChange={handleChange}
@@ -172,7 +171,7 @@ const UserForm: React.FC<Props> = ({ history }) => {
 							>
 								Sisesta oma vanus aastates
 							</h4>
-							<Input
+							<input
 								name="age"
 								placeholder="Vanus (aastat)"
 								onChange={handleChange}
@@ -190,9 +189,8 @@ const UserForm: React.FC<Props> = ({ history }) => {
 							>
 								Kui tühi oli su kõht enne <br /> alkoholi tarbimist?
 							</h4>
-							<Input
+							<select
 								name="stomachState"
-								as="select"
 								onChange={handleChange}
 								onBlur={handleBlur}
 								value={values.stomachState}
@@ -204,7 +202,7 @@ const UserForm: React.FC<Props> = ({ history }) => {
 								<option value="average">keskmiselt</option>
 								<option value="mostly-empty">pigem tühi</option>
 								<option value="empty">tühi</option>
-							</Input>
+							</select>
 
 							<h4
 								className="left-element userform__description"
@@ -214,9 +212,8 @@ const UserForm: React.FC<Props> = ({ history }) => {
 							>
 								Kui tihti tarbid korraga rohkem <br /> kui 3 ühikut alkoholi?
 							</h4>
-							<Input
+							<select
 								name="drinkingHabits"
-								as="select"
 								onChange={handleChange}
 								onBlur={handleBlur}
 								value={values.drinkingHabits}
@@ -227,11 +224,11 @@ const UserForm: React.FC<Props> = ({ history }) => {
 								<option value="often">Mitu korda nädalas</option>
 								<option value="sometimes">Korra nädalas</option>
 								<option value="rarely">Vähem kui korra nädalas</option>
-							</Input>
+							</select>
 							<button
 								onClick={() => handleSubmit()}
 								className="full-element userform__button"
-								disabled={isValid && touched.age ? false : true}
+								disabled={isValid ? false : true}
 							>
 								Kinnita
 							</button>
