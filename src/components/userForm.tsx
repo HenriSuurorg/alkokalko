@@ -84,7 +84,7 @@ const UserForm: React.FC<Props> = ({ history }) => {
 					isValid
 				}) => (
 					<div className="userform__container">
-						<form className="form__container">
+						<form className="userform__form-container">
 							<div className="Logo Logo__userform">
 								<h1>Alko-</h1>
 								<h1>Kalko</h1>
