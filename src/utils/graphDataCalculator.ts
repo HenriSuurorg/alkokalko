@@ -17,8 +17,9 @@ export const graphDataCalculator = ({
   let descendingDrinks = drinkSorter(drinks, false);
 
   let maxTime = parseFloat(descendingDrinks[0].timePassed);
+  const curBacIdx = maxTime / 0.01;
   let Time = 0;
-  let graphData = [];
+  let graphBacData = [];
   let Bac = 0;
 
   while (Bac >= 0) {
@@ -28,13 +29,14 @@ export const graphDataCalculator = ({
         const activeTime = parseFloat(drink.timePassed) - (maxTime - Time);
         const alcoholMass =
           parseFloat(drink.volume) * 0.0007893 * (parseFloat(drink.ABV) / 100);
-        const x1 = alcoholMass * (1 - Math.E ** (-absorptionRate * activeTime));
-        const y1 = widmarkFactor * weight;
-        Bac = Bac + (x1 / y1) * 100;
+        const numerator =
+          alcoholMass * (1 - Math.E ** (-absorptionRate * activeTime));
+        const denominator = widmarkFactor * weight;
+        Bac = Bac + (numerator / denominator) * 100;
       }
     }
     if (Bac - Time * eliminationRate < 0 && Time > maxTime) {
-      graphData.push(0);
+      graphBacData.push(0);
       break;
     }
     if (Bac - Time * eliminationRate < 0) {
@@ -44,15 +46,15 @@ export const graphDataCalculator = ({
         Time;
       const multiplier = soberTime / 0.01;
       for (let i = multiplier; i >= 0; i--) {
-        graphData.push(0);
+        graphBacData.push(0);
       }
       descendingDrinks.shift();
       maxTime = parseFloat(descendingDrinks[0].timePassed);
       Time = 0;
     } else {
-      graphData.push(Bac - Time * eliminationRate); // Time on liiga suur
+      graphBacData.push(Bac - Time * eliminationRate); // Time on liiga suur
       Time = Time + 0.01;
     }
   }
-  return graphData;
+  return { graphBacData, currentBac: graphBacData[curBacIdx], curBacIdx };
 };

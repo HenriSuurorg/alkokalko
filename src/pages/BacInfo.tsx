@@ -8,11 +8,11 @@ interface Props
   extends RouteComponentProps<
     { id: string },
     {},
-    { currentBac: number; graphBacData: number[] }
+    { currentBac: number; graphBacData: number[]; curBacIdx: number }
   > {}
 
 export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
-  const { currentBac, graphBacData } = location.state;
+  const { currentBac, graphBacData, curBacIdx } = location.state;
   const { eliminationRate } = userParameters(match.params.id);
 
   let labels = [];
@@ -38,7 +38,7 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
     labels: labels,
     datasets: [
       {
-        label: "alcohol Content",
+        label: "verealkoholisisaldus",
         fill: false,
         lineTension: 0.1,
         backgroundColor: "rgba(75,192,192,0.4)",
@@ -57,6 +57,24 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
     ],
   };
   const options = {
+    annotation: {
+      annotations: [
+        {
+          drawTime: "afterDatasetsDraw",
+          type: "line",
+          mode: "vertical",
+          scaleID: "x-axis-0",
+          value: 1000,
+          borderWidth: 5,
+          borderColor: "red",
+          label: {
+            content: "TODAY",
+            enabled: true,
+            position: "top",
+          },
+        },
+      ],
+    },
     scales: {
       xAxes: [
         {
