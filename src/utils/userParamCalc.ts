@@ -1,6 +1,4 @@
-import BACCalc from "./BacCalc";
-
-const userParamCalc = (
+export const userParamCalc = (
   weight: string,
   height: string,
   age: string,
@@ -33,7 +31,7 @@ const userParamCalc = (
   }
   if (stomachState === "full") absorptionRate = 2.3;
   else if (stomachState === "mostly-full") absorptionRate = 3.35;
-  else if (stomachState === "average") absorptionRate = 4.4;
+  else if (stomachState === "average") absorptionRate = 5.4;
   else if (stomachState === "mostly-empty") {
     absorptionRate = 5.45;
     eliminationRate = -0.0025;
@@ -51,5 +49,3 @@ const userParamCalc = (
 
   return { widmarkFactor, eliminationRate, absorptionRate, weight };
 };
-
-export default userParamCalc;

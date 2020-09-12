@@ -1,4 +1,7 @@
-const graphDataCalc = ({
+import { drinkType } from "../types";
+import { drinkSorter } from "./drinkSorter";
+
+export const graphDataCalculator = ({
   widmarkFactor,
   absorptionRate,
   eliminationRate,
@@ -9,32 +12,9 @@ const graphDataCalc = ({
   absorptionRate: number;
   eliminationRate: number;
   weight: number;
-  drinks: {
-    type: string;
-    volume: string;
-    unit: string;
-    ABV: string;
-    timePassed: string;
-  }[];
+  drinks: drinkType[];
 }) => {
-  const drinksInChronologicalOrder = drinks.sort(
-    (
-      a: {
-        type: string;
-        volume: string;
-        unit: string;
-        ABV: string;
-        timePassed: string;
-      },
-      b: {
-        type: string;
-        volume: string;
-        unit: string;
-        ABV: string;
-        timePassed: string;
-      }
-    ) => parseFloat(b.timePassed) - parseFloat(a.timePassed)
-  );
+  const drinksInChronologicalOrder = drinkSorter(drinks);
 
   let maxTime = parseFloat(drinksInChronologicalOrder[0].timePassed);
   let Time = 0;
@@ -62,5 +42,3 @@ const graphDataCalc = ({
   }
   return graphData;
 };
-
-export default graphDataCalc;

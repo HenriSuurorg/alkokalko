@@ -1,4 +1,7 @@
-const BACCalc = ({
+import { drinkType } from "../types";
+import { drinkSorter } from "./drinkSorter";
+
+export const bacCalculator = ({
   widmarkFactor,
   absorptionRate,
   eliminationRate,
@@ -9,48 +12,15 @@ const BACCalc = ({
   absorptionRate: number;
   eliminationRate: number;
   weight: number;
-  drinks: {
-    type: string;
-    volume: string;
-    unit: string;
-    ABV: string;
-    timePassed: string;
-  }[];
+  drinks: drinkType[];
 }) => {
   // --- creates a new array where the drinks are in chronological order --- //
-  const drinksInChronologicalOrder = drinks.sort(
-    (
-      a: {
-        type: string;
-        volume: string;
-        unit: string;
-        ABV: string;
-        timePassed: string;
-      },
-      b: {
-        type: string;
-        volume: string;
-        unit: string;
-        ABV: string;
-        timePassed: string;
-      }
-    ) => parseFloat(b.timePassed) - parseFloat(a.timePassed)
-  );
+  const drinksInChronologicalOrder = drinkSorter(drinks);
 
   // --- calculates current Blood alcohol level --- //
 
   let currentBAC = drinksInChronologicalOrder.reduce(
-    (
-      acc: number,
-      curDrink: {
-        type: string;
-        volume: string;
-        unit: string;
-        ABV: string;
-        timePassed: string;
-      },
-      i: number
-    ) => {
+    (acc: number, curDrink: drinkType, i: number) => {
       let alcoholMass: number = 0; // Mass of alcohol in the current drink
       if (curDrink.unit === "ml") {
         alcoholMass =
@@ -90,5 +60,3 @@ const BACCalc = ({
   );
   return currentBAC;
 };
-
-export default BACCalc;
