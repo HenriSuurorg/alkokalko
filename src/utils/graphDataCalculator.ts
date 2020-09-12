@@ -38,9 +38,17 @@ export const graphDataCalculator = ({
       break;
     }
     if (Bac - Time * eliminationRate < 0) {
-      // const soberTime = parseFloat(descendingDrinks[0].timePassed) - parseFloat(descendingDrinks[1].timePassed) - Time
-      graphData.push(0);
-      Time = Time + 0.01;
+      const soberTime =
+        parseFloat(descendingDrinks[0].timePassed) -
+        parseFloat(descendingDrinks[1].timePassed) -
+        Time;
+      const multiplier = soberTime / 0.01;
+      for (let i = multiplier; i >= 0; i--) {
+        graphData.push(0);
+      }
+      descendingDrinks.shift();
+      maxTime = parseFloat(descendingDrinks[0].timePassed);
+      Time = 0;
     } else {
       graphData.push(Bac - Time * eliminationRate); // Time on liiga suur
       Time = Time + 0.01;
