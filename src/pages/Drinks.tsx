@@ -7,11 +7,11 @@ import { NewDrink } from "../components/NewDrink";
 import { bacCalculator } from "../utils/bacCalculator";
 import { graphDataCalculator } from "../utils/graphDataCalculator";
 import { drinkSorter } from "../utils/drinkSorter";
+import { userParameters } from "../utils/userParameters";
 
 interface DrinksProps extends RouteComponentProps<{ id: string }> {}
 
 export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
-  const paramArray = match.params.id.split(";");
   const [drinks, setDrinks] = useLocalStorage("drinks", []);
   const [
     duplicateDrink,
@@ -19,19 +19,12 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
   ] = useState<duplicateDrinkType | null>(null);
   const [addingNewDrink, setAddingNewDrink] = useState(false);
 
-  const userParameters = {
-    widmarkFactor: parseFloat(paramArray[0]),
-    eliminationRate: parseFloat(paramArray[1]),
-    absorptionRate: parseFloat(paramArray[2]),
-    weight: parseFloat(paramArray[3]),
-  };
-
   const {
     widmarkFactor,
     absorptionRate,
     eliminationRate,
     weight,
-  } = userParameters;
+  } = userParameters(match.params.id);
 
   const calculateBAC = () => {
     console.log("startng bac calculation");

@@ -2,6 +2,7 @@ import React from "react";
 import { RouteComponentProps } from "react-router";
 import { Line } from "react-chartjs-2";
 import { bacStatus } from "../utils/bacStatus";
+import { userParameters } from "../utils/userParameters";
 
 interface Props
   extends RouteComponentProps<
@@ -12,6 +13,8 @@ interface Props
 
 export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
   const { currentBac, graphBacData } = location.state;
+  const { eliminationRate } = userParameters(match.params.id);
+
   let labels = [];
 
   for (let _ in graphBacData) {
@@ -26,6 +29,8 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
   const editUser = () => {
     history.push("/user");
   };
+
+  console.log(graphBacData);
 
   const description = bacStatus(currentBac);
 
@@ -62,14 +67,14 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ maxWidth: "800px" }}>
       <h1>Sinu vere alkoholisisaldus: {currentBac}</h1>
       <h1>
-        Sa oled kaine {Math.round(graphBacData.length * 0.01)} tunni pärast
+        Sa oled kaine ~{Math.round(currentBac / eliminationRate)} tunni pärast
       </h1>
       <h3>{description}</h3>
-      <button onClick={editDrinks}>Edit drinks</button>
-      <button onClick={editUser}>Edit user</button>
+      <button onClick={editDrinks}>muuda jooke</button>
+      <button onClick={editUser}>muuda kasutajat</button>
       <Line data={graphData} legend={{ display: false }} options={options} />
     </div>
   );

@@ -15,11 +15,10 @@ export const bacCalculator = ({
   drinks: drinkType[];
 }) => {
   // --- creates a new array where the drinks are in chronological order --- //
-  const drinksInChronologicalOrder = drinkSorter(drinks);
+  const descendingDrinks = drinkSorter(drinks, false);
 
   // --- calculates current Blood alcohol level --- //
-
-  let currentBAC = drinksInChronologicalOrder.reduce(
+  let currentBAC = drinks.reduce(
     (acc: number, curDrink: drinkType, i: number) => {
       let alcoholMass: number = 0; // Mass of alcohol in the current drink
       if (curDrink.unit === "ml") {
@@ -36,7 +35,7 @@ export const bacCalculator = ({
 
       const curDrinkBac = (x / y) * 100;
       let curBac = 0;
-      if (i === drinksInChronologicalOrder.length - 1) {
+      if (i === descendingDrinks.length - 1) {
         curBac =
           acc + curDrinkBac - parseFloat(curDrink.timePassed) * eliminationRate;
       } else {
@@ -44,7 +43,7 @@ export const bacCalculator = ({
           acc +
           curDrinkBac -
           (parseFloat(curDrink.timePassed) -
-            parseFloat(drinksInChronologicalOrder[i + 1].timePassed)) *
+            parseFloat(descendingDrinks[i + 1].timePassed)) *
             eliminationRate;
       }
 
@@ -58,5 +57,5 @@ export const bacCalculator = ({
     },
     0
   );
-  return currentBAC;
+  return currentBAC < 0 ? 0 : currentBAC;
 };
