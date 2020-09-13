@@ -23,7 +23,6 @@ export const DrinkCards: React.FC<DrinkCardsProps> = ({
         style={{ backgroundColor: "gray", margin: "10px" }}
       >
         <button onClick={() => addDuplicateDrink(drink)}>+</button>
-        <h3>key: {i}</h3>
         <h3>{drink.type}</h3>
         <h3>{drink.volume + drink.unit} </h3>
         <h3>{drink.ABV}%</h3>

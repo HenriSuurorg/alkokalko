@@ -3,23 +3,31 @@ import { RouteComponentProps } from "react-router";
 import { Line } from "react-chartjs-2";
 import { bacStatus } from "../utils/bacStatus";
 import { userParameters } from "../utils/userParameters";
+import "chartjs-plugin-annotation";
+import { ChartOptions } from "chart.js";
+import { soberingTime } from "../utils/soberingTime";
 
 interface Props
   extends RouteComponentProps<
     { id: string },
     {},
-    { currentBac: number; graphBacData: number[]; curBacIdx: number }
+    {
+      currentBac: number;
+      graphBacData: number[];
+      curBacIdx: number;
+      currentBac2: number;
+    }
   > {}
 
 export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
-  const { currentBac, graphBacData, curBacIdx } = location.state;
+  const { currentBac, graphBacData, curBacIdx, currentBac2 } = location.state;
   const { eliminationRate } = userParameters(match.params.id);
 
   let labels = [];
 
-  for (let _ in graphBacData) {
-    labels.push("");
-    //labels.push((parseFloat(n) * 0.01).toFixed(2));
+  for (let n in graphBacData) {
+    // labels.push("");
+    labels.push((parseFloat(n) * 0.01).toFixed(2));
   }
 
   const editDrinks = () => {
@@ -30,7 +38,7 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
     history.push("/user");
   };
 
-  console.log(graphBacData);
+  console.log("jou: ", (curBacIdx * 0.01).toFixed(2));
 
   const description = bacStatus(currentBac);
 
@@ -38,7 +46,7 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
     labels: labels,
     datasets: [
       {
-        label: "verealkoholisisaldus",
+        label: "vere alkoholisisaldus",
         fill: false,
         lineTension: 0.1,
         backgroundColor: "rgba(75,192,192,0.4)",
@@ -60,17 +68,17 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
     annotation: {
       annotations: [
         {
-          drawTime: "afterDatasetsDraw",
           type: "line",
           mode: "vertical",
           scaleID: "x-axis-0",
-          value: 1000,
-          borderWidth: 5,
-          borderColor: "red",
+          value: (curBacIdx * 0.01).toFixed(2),
+          borderColor: "black",
+          borderWidth: 2,
+          borderDash: [5, 5],
           label: {
-            content: "TODAY",
-            enabled: true,
-            position: "top",
+            backgroundColor: "rgba(220,56,6,100)",
+            content: "praegune joove",
+            enabled: false,
           },
         },
       ],
@@ -87,13 +95,19 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
   return (
     <div className="container" style={{ maxWidth: "800px" }}>
       <h1>Sinu vere alkoholisisaldus: {currentBac}</h1>
+
       <h1>
-        Sa oled kaine ~{Math.round(currentBac / eliminationRate)} tunni pärast
+        Sa oled kaine ~{soberingTime(graphBacData, curBacIdx, eliminationRate)}{" "}
+        tunni pärast
       </h1>
       <h3>{description}</h3>
       <button onClick={editDrinks}>muuda jooke</button>
       <button onClick={editUser}>muuda kasutajat</button>
-      <Line data={graphData} legend={{ display: false }} options={options} />
+      <Line
+        data={graphData as any}
+        legend={{ display: false }}
+        options={options as ChartOptions}
+      />
     </div>
   );
 };

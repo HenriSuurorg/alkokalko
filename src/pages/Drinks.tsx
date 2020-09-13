@@ -27,13 +27,13 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
   } = userParameters(match.params.id);
 
   const calculateBAC = () => {
-    // const currentBac = bacCalculator({
-    //   widmarkFactor,
-    //   absorptionRate,
-    //   eliminationRate,
-    //   weight,
-    //   drinks,
-    // });
+    const currentBac2 = bacCalculator({
+      widmarkFactor,
+      absorptionRate,
+      eliminationRate,
+      weight,
+      drinks,
+    });
     const { graphBacData, currentBac, curBacIdx } = graphDataCalculator({
       widmarkFactor,
       absorptionRate,
@@ -43,7 +43,7 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
     });
     history.push({
       pathname: `/user/bacinfo/${match.params.id}`,
-      state: { currentBac, graphBacData, curBacIdx },
+      state: { currentBac, graphBacData, curBacIdx, currentBac2 },
     });
   };
 
