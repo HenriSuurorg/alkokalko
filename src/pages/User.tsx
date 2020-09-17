@@ -4,6 +4,7 @@ import { RouteComponentProps } from "react-router";
 import { useLocalStorage } from "../utils/useLocalState";
 import { userParamCalc } from "../utils/userParamCalc";
 import { userSchema } from "../validationSchemas/userSchema";
+import "../Style.css";
 
 interface UserProps extends RouteComponentProps {}
 
@@ -53,12 +54,12 @@ export const User: React.FC<UserProps> = ({ history }) => {
         setFieldValue,
         isValid,
       }) => (
-        <div className="userform__container">
+        <div className="userform__container container">
+          <div className="Logo userform__logo">
+            <h1>Alko-</h1>
+            <h1>Kalko</h1>
+          </div>
           <form className="userform__form-container">
-            <div className="Logo Logo__userform">
-              <h1>Alko-</h1>
-              <h1>Kalko</h1>
-            </div>
             <div className="userform__title-container">
               <h2>Sisesta oma füüsilised näitajad</h2>
             </div>
@@ -117,9 +118,10 @@ export const User: React.FC<UserProps> = ({ history }) => {
             >
               Sisesta oma kaal kilogrammides
             </h4>
+
             <input
               name="weight"
-              placeholder="Kaal (kg)"
+              placeholder="kaal (kg)"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.weight}
@@ -137,7 +139,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
             </h4>
             <input
               name="height"
-              placeholder="Pikkus (cm)"
+              placeholder="pikkus (cm)"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.height}
@@ -155,7 +157,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
             </h4>
             <input
               name="age"
-              placeholder="Vanus (aastat)"
+              placeholder="vanus (aastat)"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.age}
@@ -217,7 +219,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
               onClick={() => handleSubmit()}
               type="submit"
               className="full-element userform__button"
-              disabled={isValid ? false : true}
+              disabled={!isValid || "" in values ? true : false}
             >
               Kinnita
             </button>

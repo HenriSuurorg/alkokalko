@@ -1,5 +1,6 @@
 import React from "react";
 import { RouteComponentProps } from "react-router";
+import "../Style.css";
 
 interface Props extends RouteComponentProps {}
 
@@ -9,8 +10,8 @@ const Home: React.FC<Props> = ({ history }) => {
   };
 
   return (
-    <div className="home__container">
-      <div className="Logo Logo__home">
+    <div className="container home__container">
+      <div className="Logo home__logo">
         <h1>Alko-</h1>
         <h1>Kalko</h1>
       </div>
