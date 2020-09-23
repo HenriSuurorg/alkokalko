@@ -10,6 +10,7 @@ interface UserProps extends RouteComponentProps {}
 
 export const User: React.FC<UserProps> = ({ history }) => {
   const [userParams, setUserParams] = useLocalStorage("userParams", {});
+
   return (
     <Formik
       initialValues={{
@@ -55,15 +56,19 @@ export const User: React.FC<UserProps> = ({ history }) => {
         isValid,
       }) => (
         <div className="userform__container container">
-          <div className="Logo userform__logo">
+          <div className="Logo userform__logo-web">
             <h1>Alko-</h1>
             <h1>Kalko</h1>
           </div>
           <form className="userform__form-container">
-            <div className="userform__title-container">
+            <div className="Logo userform__logo-mobile">
+              <h1>Alko-</h1>
+              <h1>Kalko</h1>
+            </div>
+            <div className="userform__title-container userform__g1">
               <h2>Sisesta oma füüsilised näitajad</h2>
             </div>
-            <div className="userform__radio-container left-element">
+            <div className="userform__g2 userform__radiobuttons-container">
               <input
                 type="radio"
                 name="sex"
@@ -85,8 +90,6 @@ export const User: React.FC<UserProps> = ({ history }) => {
               >
                 Mees
               </label>
-            </div>
-            <div className="userform__radio-container right-element">
               <input
                 type="radio"
                 name="sex"
@@ -111,7 +114,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
             </div>
 
             <h4
-              className="left-element userform__description"
+              className=" userform__description userform__g3"
               style={{
                 color: errors.weight && touched.weight ? "#ff0033" : "#3f4649",
               }}
@@ -126,11 +129,11 @@ export const User: React.FC<UserProps> = ({ history }) => {
               onBlur={handleBlur}
               value={values.weight}
               type="text"
-              className="right-element userform__text-input"
+              className=" userform__text-input userform__g4"
             />
 
             <h4
-              className="left-element userform__description"
+              className=" userform__description userform__g5"
               style={{
                 color: errors.height && touched.height ? "#ff0033" : "#3f4649",
               }}
@@ -144,11 +147,11 @@ export const User: React.FC<UserProps> = ({ history }) => {
               onBlur={handleBlur}
               value={values.height}
               type="text"
-              className="right-element userform__text-input"
+              className=" userform__text-input userform__g6"
             />
 
             <h4
-              className="left-element userform__description"
+              className=" userform__description userform__g7"
               style={{
                 color: errors.age && touched.age ? "#ff0033" : "#3f4649",
               }}
@@ -162,11 +165,11 @@ export const User: React.FC<UserProps> = ({ history }) => {
               onBlur={handleBlur}
               value={values.age}
               type="text"
-              className="right-element userform__text-input"
+              className=" userform__text-input userform__g8"
             />
 
             <h4
-              className="left-element userform__description"
+              className="userform__description userform__g9"
               style={{
                 color:
                   errors.stomachState && touched.stomachState
@@ -174,14 +177,15 @@ export const User: React.FC<UserProps> = ({ history }) => {
                     : "#3f4649",
               }}
             >
-              Kui tühi oli su kõht enne <br /> alkoholi tarbimist?
+              Kui tühi oli su kõht enne{" "}
+              {window.screen.width < 600 ? null : <br />} alkoholi tarbimist?
             </h4>
             <select
               name="stomachState"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.stomachState}
-              className="right-element userform__select-input"
+              className=" userform__select-input userform__g10"
             >
               <option value="25"></option>
               <option value="full">täis</option>
@@ -192,7 +196,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
             </select>
 
             <h4
-              className="left-element userform__description"
+              className=" userform__description userform__g11"
               style={{
                 color:
                   errors.drinkingHabits && touched.drinkingHabits
@@ -200,14 +204,15 @@ export const User: React.FC<UserProps> = ({ history }) => {
                     : "#3f4649",
               }}
             >
-              Kui tihti tarbid korraga rohkem <br /> kui 3 ühikut alkoholi?
+              Kui tihti tarbid korraga rohkem{" "}
+              {window.screen.width < 600 ? null : <br />}kui 3 ühikut alkoholi?
             </h4>
             <select
               name="drinkingHabits"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.drinkingHabits}
-              className="right-element userform__select-input"
+              className=" userform__select-input userform__g12"
             >
               <option value="25"></option>
               <option value="everyday">Iga päev</option>
@@ -218,7 +223,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
             <button
               onClick={() => handleSubmit()}
               type="submit"
-              className="full-element userform__button"
+              className="full-element userform__button userform__g13"
               disabled={!isValid || "" in values ? true : false}
             >
               Kinnita
