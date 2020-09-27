@@ -26,7 +26,7 @@ export const NewDrink: React.FC<Props> = ({
         initialValues={{
           type: duplicateDrinkData?.type || "",
           volume: duplicateDrinkData?.volume || "",
-          unit: duplicateDrinkData?.unit || "",
+          unit: duplicateDrinkData?.unit || "ml",
           timePassed: "",
           abv: duplicateDrinkData?.abv || "",
         }}
@@ -101,7 +101,9 @@ export const NewDrink: React.FC<Props> = ({
               className="newdrink__drink-abv-input"
             />
             <ErrorMessage name="abv" />
-            <button onClick={() => handleSubmit()}>Kinnita</button>
+            <button onClick={() => handleSubmit()} disabled={!isValid}>
+              Kinnita
+            </button>
           </form>
         )}
       </Formik>

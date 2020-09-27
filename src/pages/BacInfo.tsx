@@ -38,8 +38,6 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
     history.push("/user");
   };
 
-  console.log("jou: ", (curBacIdx * 0.01).toFixed(2));
-
   const description = bacStatus(currentBac);
 
   const graphData = {
