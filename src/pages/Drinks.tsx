@@ -52,7 +52,7 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
       type: drink.type,
       volume: drink.volume,
       unit: drink.unit,
-      ABV: drink.ABV,
+      abv: drink.abv,
     });
     setAddingNewDrink(true);
   };
@@ -61,12 +61,12 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
     type: string,
     volume: string,
     unit: string,
-    ABV: string,
+    abv: string,
     timePassed: string
   ) => {
     setAddingNewDrink(false);
     setDuplicateDrink(null);
-    const temp = [{ type, volume, unit, ABV, timePassed }, ...drinks];
+    const temp = [{ type, volume, unit, abv, timePassed }, ...drinks];
     const sortedDrinks = drinkSorter(temp, true);
     setDrinks(sortedDrinks);
   };
@@ -80,9 +80,21 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
   return (
     <div>
       <div>
-        <button onClick={() => setAddingNewDrink(true)}>lisa jook</button>
-        <button onClick={() => calculateBAC()}>kinnita</button>
-        <button onClick={() => history.push("/user")}>muuda kasutajat</button>
+        <button
+          onClick={() => setAddingNewDrink(true)}
+          className="drinks__main-btn drinks__add-btn"
+        >
+          lisa jook
+        </button>
+        <button
+          onClick={() => calculateBAC()}
+          className="drinks__main-btn drinks__submit-btn"
+        >
+          kinnita
+        </button>
+        <button onClick={() => history.push("/user")} className="edit-user-btn">
+          muuda kasutajat
+        </button>
       </div>
       <NewDrink
         closeForm={closeForm}

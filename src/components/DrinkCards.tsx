@@ -25,7 +25,7 @@ export const DrinkCards: React.FC<DrinkCardsProps> = ({
         <button onClick={() => addDuplicateDrink(drink)}>+</button>
         <h3>{drink.type}</h3>
         <h3>{drink.volume + drink.unit} </h3>
-        <h3>{drink.ABV}%</h3>
+        <h3>{drink.abv}%</h3>
         <h3>{drink.timePassed} tundi tagasi</h3>
         <button onClick={() => deleteDrink(i)}>DEL</button>
       </div>

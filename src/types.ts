@@ -2,7 +2,7 @@ export type drinkType = {
   type: string;
   volume: string;
   unit: string;
-  ABV: string;
+  abv: string;
   timePassed: string;
 };
 
@@ -10,7 +10,7 @@ export type duplicateDrinkType = {
   type: string;
   volume: string;
   unit: string;
-  ABV: string;
+  abv: string;
 };
 
 export type chartDataType = {

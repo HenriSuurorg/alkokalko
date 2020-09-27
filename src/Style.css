@@ -225,7 +225,7 @@ input[type="radio"]:checked + label:before {
 .userform__g1 {
   grid-row: 1 / 2;
 }
-<br / > .userform__g2 {
+.userform__g2 {
   grid-row: 2 / 3;
 }
 
@@ -302,7 +302,7 @@ input[type="radio"]:checked + label:before {
 .userform__button {
   margin-top: 2.0625rem;
   width: 36.3rem;
-  height: 3.4375rem;
+  height: 4rem;
   font-size: 1.375rem;
   border: 0.20625rem solid var(--primary-color);
   color: var(--primary-color);
@@ -651,3 +651,7 @@ input[type="radio"]:checked + label:before {
 }
 
 /* ------- user -------*/
+
+/* ------- drinks -------*/
+
+/* ------- drinks -------*/

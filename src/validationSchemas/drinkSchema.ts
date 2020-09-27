@@ -9,7 +9,7 @@ export const drinkSchema = Yup.object({
     .required("See väli on kohustuslik")
     .min(2, "See väli on kohustuslik"),
   timePassed: Yup.number().max(30).required("See väli on kohustuslik"),
-  ABV: Yup.number()
+  abv: Yup.number()
     .max(100, "Siseta joogi kangus protsentides")
     .required("See väli on kohustuslik"),
 });

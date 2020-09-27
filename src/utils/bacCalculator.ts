@@ -25,7 +25,7 @@ export const bacCalculator = ({
         alcoholMass =
           parseFloat(curDrink.volume) *
           0.0007893 *
-          (parseFloat(curDrink.ABV) / 100);
+          (parseFloat(curDrink.abv) / 100);
       }
 
       let x =
