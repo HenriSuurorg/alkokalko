@@ -62,6 +62,7 @@ export const NewDrink: React.FC<Props> = ({
               <option value="vodka">viin</option>
               <option value="beer">õlu</option>
               <option value="wine">vein</option>
+              <option value="coctail">kokteil</option>
             </select>
             <input
               name="volume"

@@ -29,7 +29,6 @@ export const graphDataCalculator = ({
         const activeTime = parseFloat(drink.timePassed) - (maxTime - Time);
         const alcoholMass =
           parseFloat(drink.volume) * 0.0007893 * (parseFloat(drink.abv) / 100);
-        console.log("abv: ", drink.abv);
         const numerator =
           alcoholMass * (1 - Math.E ** (-absorptionRate * activeTime));
         const denominator = widmarkFactor * weight;
@@ -57,6 +56,5 @@ export const graphDataCalculator = ({
       Time = Time + 0.01;
     }
   }
-  console.log(graphBacData);
   return { graphBacData, currentBac: graphBacData[curBacIdx], curBacIdx };
 };

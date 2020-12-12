@@ -1,5 +1,8 @@
 import React from "react";
 import { drinkType } from "../types";
+import { CgMathPlus } from "react-icons/cg";
+import { Shot } from "../icons/shot";
+import { DrinkTitle } from "./DrinkTitle";
 
 interface DrinkCardsProps {
   deleteDrink: (i: number) => void;
@@ -17,17 +20,37 @@ export const DrinkCards: React.FC<DrinkCardsProps> = ({
   }
   const drinksJSX = drinks.map((drink: drinkType, i: number) => {
     return (
-      <div
-        className="drink-card"
-        key={i}
-        style={{ backgroundColor: "gray", margin: "10px" }}
-      >
-        <button onClick={() => addDuplicateDrink(drink)}>+</button>
-        <h3>{drink.type}</h3>
-        <h3>{drink.volume + drink.unit} </h3>
-        <h3>{drink.abv}%</h3>
-        <h3>{drink.timePassed} tundi tagasi</h3>
-        <button onClick={() => deleteDrink(i)}>DEL</button>
+      <div className="drinkcard__container" key={i}>
+        <DrinkTitle drink={drink} />
+        <CgMathPlus
+          className="drinkcard__plus-icon"
+          onClick={() => addDuplicateDrink(drink)}
+        />
+        <div className="drinkcard__parameter-container">
+          <h4>Kui palju?</h4>
+          <h3>
+            <b>{drink.volume}</b>
+            {drink.unit}{" "}
+          </h3>
+        </div>
+        <hr className="drinkcard__line" />
+        <div className="drinkcard__parameter-container">
+          <h4>Kui kange?</h4>
+          <h3>
+            <b>{drink.abv}</b>%
+          </h3>
+        </div>
+        <div className="drinkcard__parameter-container">
+          <h4>Mitu tundi tagasi?</h4>
+          <h3>
+            <b>{drink.timePassed}</b>{" "}
+            {drink.timePassed === "1" ? "tund" : "tundi"}
+          </h3>
+        </div>
+        <CgMathPlus
+          className="drinkcard__del-icon"
+          onClick={() => deleteDrink(i)}
+        />
       </div>
     );
   });

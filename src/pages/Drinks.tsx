@@ -78,7 +78,7 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
   };
 
   return (
-    <div>
+    <div className="container drinks__container">
       <div>
         <button
           onClick={() => setAddingNewDrink(true)}
