@@ -1,7 +1,6 @@
 import React from "react";
 import { drinkType } from "../types";
 import { CgMathPlus } from "react-icons/cg";
-import { Shot } from "../icons/shot";
 import { DrinkTitle } from "./DrinkTitle";
 
 interface DrinkCardsProps {
@@ -22,10 +21,6 @@ export const DrinkCards: React.FC<DrinkCardsProps> = ({
     return (
       <div className="drinkcard__container" key={i}>
         <DrinkTitle drink={drink} />
-        <CgMathPlus
-          className="drinkcard__plus-icon"
-          onClick={() => addDuplicateDrink(drink)}
-        />
         <div className="drinkcard__parameter-container">
           <h4>Kui palju?</h4>
           <h3>
@@ -51,9 +46,13 @@ export const DrinkCards: React.FC<DrinkCardsProps> = ({
           className="drinkcard__del-icon"
           onClick={() => deleteDrink(i)}
         />
+        <CgMathPlus
+          className="drinkcard__plus-icon"
+          onClick={() => addDuplicateDrink(drink)}
+        />
       </div>
     );
   });
 
-  return <div>{drinksJSX}</div>;
+  return <div className="drinkcard__drinkcards">{drinksJSX}</div>;
 };

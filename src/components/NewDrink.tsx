@@ -1,7 +1,9 @@
 import React from "react";
-import { Formik, Field, ErrorMessage } from "formik";
+import { Formik } from "formik";
 import { drinkSchema } from "../validationSchemas/drinkSchema";
 import { duplicateDrinkType } from "../types";
+import { typeInitalValues } from "../utils/typeInitalValues";
+import { CgMathPlus } from "react-icons/cg";
 
 interface Props {
   closeForm: (
@@ -13,22 +15,24 @@ interface Props {
   ) => void;
   duplicateDrinkData: duplicateDrinkType | null;
   addingNewDrink: boolean;
+  cancelAdding: () => void;
 }
 
 export const NewDrink: React.FC<Props> = ({
   closeForm,
   duplicateDrinkData,
   addingNewDrink,
+  cancelAdding,
 }) => {
   return !addingNewDrink ? null : (
-    <div>
+    <div className="newdrink__container">
       <Formik
         initialValues={{
-          type: duplicateDrinkData?.type || "",
-          volume: duplicateDrinkData?.volume || "",
+          type: duplicateDrinkData?.type || "large-beer",
+          volume: duplicateDrinkData?.volume || "500",
           unit: duplicateDrinkData?.unit || "ml",
           timePassed: "",
-          abv: duplicateDrinkData?.abv || "",
+          abv: duplicateDrinkData?.abv || "40",
         }}
         onSubmit={(values) => {
           closeForm(
@@ -42,69 +46,116 @@ export const NewDrink: React.FC<Props> = ({
         validationSchema={drinkSchema}
       >
         {({
-          touched,
-          errors,
           values,
           handleChange,
           handleBlur,
-          isValid,
           handleSubmit,
+          setValues,
+          errors,
+          touched,
         }) => (
-          <form>
-            <select
-              name="type"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.type}
-              className="newdrink__drink-type-input"
-            >
-              <option value="25">jook</option>
-              <option value="vodka">viin</option>
-              <option value="beer">õlu</option>
-              <option value="wine">vein</option>
-              <option value="coctail">kokteil</option>
-            </select>
-            <input
-              name="volume"
-              placeholder="suurus (ml)"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.volume}
-              type="text"
-              className="newdrink__drink-volume-input"
+          <form className="newdrink__form">
+            <div className="newdrink__parameter-container newdrink__title">
+              <h4>Mis jook?</h4>
+              <select
+                name="type"
+                onChange={(e) => setValues(typeInitalValues(e.target.value))}
+                onBlur={handleBlur}
+                value={values.type}
+                className="newdrink__type-input"
+              >
+                <option value="large-beer">Suur õlu</option>
+                <option value="small-beer">Väike õlu</option>
+                <option value="glass-wine">Klaas veini</option>
+                <option value="shot-vodka">Pits viina</option>
+                <option value="cognac">Konjak</option>
+                <option value="whisky">Viski</option>
+                <option value="gin-tonic">Gin Tonic</option>
+                <option value="mojito">Mojito</option>
+                <option value="bloody-mary">Bloody Mary</option>
+                <option value="white-russian">White Russian</option>
+                <option value="martini">Martini</option>
+                <option value="coctail">Muu kokteil</option>
+                <option value="other">Muu jook</option>
+              </select>
+            </div>
+            <div className="newdrink__parameter-container">
+              <h4
+                style={{
+                  color:
+                    errors.volume && touched.volume ? "#ff0033" : "#3f4649",
+                }}
+              >
+                Kui palju?
+              </h4>
+              <div className="newdrink__parameter-subcontainer">
+                <input
+                  name="volume"
+                  placeholder=""
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.volume}
+                  type="text"
+                  className="newdrink__volume-input"
+                />
+                <h3>ml</h3>
+              </div>
+            </div>
+            <hr className="drinkcard__line" />
+            <div className="newdrink__parameter-container">
+              <h4
+                style={{
+                  color: errors.abv && touched.abv ? "#ff0033" : "#3f4649",
+                }}
+              >
+                Kui kange?
+              </h4>
+              <div className="newdrink__parameter-subcontainer">
+                <input
+                  name="abv"
+                  placeholder=""
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.abv}
+                  type="text"
+                  className="newdrink__abv-input"
+                />
+                <h3>%</h3>
+              </div>
+            </div>
+            <div className="newdrink__parameter-container">
+              <h4
+                style={{
+                  color:
+                    errors.timePassed && touched.timePassed
+                      ? "#ff0033"
+                      : "#3f4649",
+                }}
+              >
+                {" "}
+                Mitu tundi tagasi?{" "}
+              </h4>
+              <div className="newdrink__parameter-subcontainer">
+                <input
+                  name="timePassed"
+                  placeholder=""
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.timePassed}
+                  type="text"
+                  className="newdrink__timePassed-input"
+                />
+                <h3>tundi</h3>
+              </div>
+            </div>
+            <CgMathPlus
+              className="drinkcard__del-icon"
+              onClick={() => cancelAdding()}
             />
-            <select
-              name="unit"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.unit}
-              className="newdrink__drink-type"
-            >
-              <option value="5">ühik</option>
-              <option value="ml">ml</option>
-            </select>
-            <input
-              name="timePassed"
-              placeholder="aega möödas (h)"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.timePassed}
-              type="text"
-              className="newdrink__drink-timepassed-input"
+            <CgMathPlus
+              className="drinkcard__plus-icon"
+              onClick={() => handleSubmit()}
             />
-            <input
-              name="abv"
-              placeholder="joogi kangus (%)"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.abv}
-              type="text"
-              className="newdrink__drink-abv-input"
-            />
-            <ErrorMessage name="abv" />
-            <button onClick={() => handleSubmit()} disabled={!isValid}>
-              Kinnita
-            </button>
           </form>
         )}
       </Formik>

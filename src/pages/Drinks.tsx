@@ -71,6 +71,11 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
     setDrinks(sortedDrinks);
   };
 
+  const cancelAdding = () => {
+    setAddingNewDrink(false);
+    setDuplicateDrink(null);
+  };
+
   const deleteDrink = (i: number) => {
     const temp = [...drinks];
     temp.splice(i, 1);
@@ -79,33 +84,45 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
 
   return (
     <div className="container drinks__container">
-      <div>
-        <button
-          onClick={() => setAddingNewDrink(true)}
-          className="drinks__main-btn drinks__add-btn"
-        >
-          lisa jook
-        </button>
-        <button
-          onClick={() => calculateBAC()}
-          className="drinks__main-btn drinks__submit-btn"
-        >
-          kinnita
-        </button>
-        <button onClick={() => history.push("/user")} className="edit-user-btn">
-          muuda kasutajat
-        </button>
+      <div className="Logo drinks__logo">
+        <h1>Alko-</h1>
+        <h1>Kalko</h1>
       </div>
-      <NewDrink
-        closeForm={closeForm}
-        duplicateDrinkData={duplicateDrink}
-        addingNewDrink={addingNewDrink}
-      />
-      <DrinkCards
-        drinks={drinks}
-        deleteDrink={deleteDrink}
-        addDuplicateDrink={addDuplicateDrink}
-      />{" "}
+      <h2
+        onClick={() => history.push("/user")}
+        className="drinks__edit-user-btn"
+      >
+        Muuda kasutajat
+      </h2>
+      <div className="drinks__main-btns">
+        <div>
+          <button
+            onClick={() => setAddingNewDrink(true)}
+            className="drinks__main-btn drinks__add-btn"
+          >
+            Lisa jook
+          </button>
+          <button
+            onClick={() => calculateBAC()}
+            className="drinks__main-btn drinks__submit-btn"
+          >
+            Kinnita
+          </button>
+        </div>
+      </div>
+      <div className="drinks__drink-card-container">
+        <NewDrink
+          closeForm={closeForm}
+          duplicateDrinkData={duplicateDrink}
+          addingNewDrink={addingNewDrink}
+          cancelAdding={cancelAdding}
+        />
+        <DrinkCards
+          drinks={drinks}
+          deleteDrink={deleteDrink}
+          addDuplicateDrink={addDuplicateDrink}
+        />{" "}
+      </div>
     </div>
   );
 };
