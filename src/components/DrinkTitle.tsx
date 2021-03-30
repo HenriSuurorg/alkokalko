@@ -8,6 +8,7 @@ import { Whisky } from "../icons/Whisky";
 import { Coctail } from "../icons/Coctail";
 import { Cognac } from "../icons/Cognac";
 import { Mojito } from "../icons/Mojito";
+import { OtherDrink } from "../icons/OtherDrink";
 
 interface DrinkTitleProps {
   drink: drinkType;
@@ -34,7 +35,7 @@ export const DrinkTitle: React.FC<DrinkTitleProps> = ({ drink }) => {
     return (
       <div className="drinkcard__title">
         <Wine className="drinkcard__wine-icon" />
-        <h2>Klaas vein</h2>
+        <h2>Klaas veini</h2>
       </div>
     );
   } else if (type === "martini") {
@@ -77,6 +78,27 @@ export const DrinkTitle: React.FC<DrinkTitleProps> = ({ drink }) => {
       <div className="drinkcard__title">
         <Mojito className="drinkcard__mojito-icon" />
         <h2>Mojito</h2>
+      </div>
+    );
+  } else if (type === "bloody-mary") {
+    return (
+      <div className="drinkcard__title">
+        <Mojito className="drinkcard__mojito-icon" />
+        <h2>Bloody Mary</h2>
+      </div>
+    );
+  } else if (type === "gin-tonic") {
+    return (
+      <div className="drinkcard__title">
+        <Cognac className="drinkcard__cognac-icon" />
+        <h2>Gin Tonic</h2>
+      </div>
+    );
+  } else if (type === "other") {
+    return (
+      <div className="drinkcard__title">
+        <OtherDrink className="drinkcard__other-icon" />
+        <h2>Muu jook</h2>
       </div>
     );
   }
