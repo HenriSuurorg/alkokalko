@@ -112,7 +112,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
                 Naine
               </label>
             </div>
-
+            <hr className="userform__line userform__line1" />
             <h4
               className=" userform__description userform__g3"
               style={{
@@ -167,7 +167,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
               type="text"
               className=" userform__text-input userform__g8"
             />
-
+            <hr className="userform__line userform__line2" />
             <h4
               className="userform__description userform__g9"
               style={{
@@ -178,7 +178,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
               }}
             >
               Kui tühi oli su kõht enne{" "}
-              {window.screen.width < 600 ? null : <br />} alkoholi tarbimist?
+              {window.screen.width < 680 ? null : <br />} alkoholi tarbimist?
             </h4>
             <select
               name="stomachState"
@@ -205,7 +205,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
               }}
             >
               Kui tihti tarbid korraga rohkem{" "}
-              {window.screen.width < 600 ? null : <br />}kui 3 ühikut alkoholi?
+              {window.screen.width < 680 ? null : <br />}kui 3 ühikut alkoholi?
             </h4>
             <select
               name="drinkingHabits"
@@ -220,6 +220,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
               <option value="sometimes">Korra nädalas</option>
               <option value="rarely">Vähem kui korra nädalas</option>
             </select>
+            <hr className="userform__line userform__line3" />
             <button
               onClick={() => handleSubmit()}
               type="submit"
