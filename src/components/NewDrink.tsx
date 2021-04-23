@@ -79,7 +79,7 @@ export const NewDrink: React.FC<Props> = ({
                 <option value="other">Muu jook</option>
               </select>
             </div>
-            <div className="newdrink__parameter-container">
+            <div className="newdrink__parameter-container newdrink__parameter-container1">
               <h4
                 style={{
                   color:
@@ -102,7 +102,7 @@ export const NewDrink: React.FC<Props> = ({
               </div>
             </div>
             <hr className="drinkcard__line" />
-            <div className="newdrink__parameter-container">
+            <div className="newdrink__parameter-container newdrink__parameter-container2">
               <h4
                 style={{
                   color: errors.abv && touched.abv ? "#ff0033" : "#3f4649",
@@ -123,7 +123,7 @@ export const NewDrink: React.FC<Props> = ({
                 <h3>%</h3>
               </div>
             </div>
-            <div className="newdrink__parameter-container">
+            <div className="newdrink__parameter-container newdrink__parameter-container3">
               <h4
                 style={{
                   color:
@@ -149,11 +149,11 @@ export const NewDrink: React.FC<Props> = ({
               </div>
             </div>
             <CgMathPlus
-              className="drinkcard__del-icon"
+              className="drinkcard__del-icon newdrink__del-icon"
               onClick={() => cancelAdding()}
             />
             <CgMathPlus
-              className="drinkcard__plus-icon"
+              className="drinkcard__plus-icon newdrink__plus-icon"
               onClick={() => handleSubmit()}
             />
           </form>

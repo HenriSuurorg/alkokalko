@@ -40,14 +40,15 @@ export const DrinkCards: React.FC<DrinkCardsProps> = ({
           <h3>
             <b>{drink.timePassed}</b>{" "}
             {drink.timePassed === "1" ? "tund" : "tundi"}
+            {window.screen.width < 680 ? " tagasi" : null}
           </h3>
         </div>
         <CgMathPlus
-          className="drinkcard__del-icon"
+          className="drinkcard__del-icon drinkcard__action-icon"
           onClick={() => deleteDrink(i)}
         />
         <CgMathPlus
-          className="drinkcard__plus-icon"
+          className="drinkcard__plus-icon drinkcard__action-icon"
           onClick={() => addDuplicateDrink(drink)}
         />
       </div>

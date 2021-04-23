@@ -71,7 +71,7 @@
   color: white;
   font-family: var(--font-family);
   font-size: 30px;
-  border-radius: 20px;
+  border-radius: 1rem;
   max-width: 235px;
   height: 4rem;
   width: 20rem;
@@ -692,6 +692,255 @@ input[type="radio"]:checked + label:before {
   }
 }
 
+@media only screen and (max-height: 700px) and (min-width: 680px) {
+  .userform__g2,
+  .userform__g3,
+  .userform__g4,
+  .userform__g5,
+  .userform__g6,
+  .userform__g7,
+  .userform__g8,
+  .userform__g9,
+  .userform__g10,
+  .userform__g11,
+  .userform__g12,
+  .userform__g13 {
+    grid-column: 1 / 3;
+    justify-self: start;
+    width: 100%;
+  }
+
+  .userform__line {
+    grid-column: 1 / 3;
+    color: #a5a6a7;
+    border: none;
+    height: 1px;
+    background-color: #a5a6a7;
+    margin: 2rem 0;
+    display: block;
+  }
+
+  .userform__line1 {
+    grid-row: 4 / 5;
+  }
+
+  .userform__line2 {
+    grid-row: 11 / 12;
+  }
+
+  .userform__line3 {
+    grid-row: 16 / 17;
+  }
+
+  .userform__g1 {
+    grid-row: 2 / 3;
+  }
+
+  .userform__g2 {
+    grid-row: 3 / 4;
+  }
+
+  .userform__g3 {
+    grid-row: 5 / 6;
+  }
+
+  .userform__g4 {
+    grid-row: 6 / 7;
+  }
+
+  .userform__g5 {
+    grid-row: 7 / 8;
+  }
+
+  .userform__g6 {
+    grid-row: 8 / 9;
+  }
+
+  .userform__g7 {
+    grid-row: 9 / 10;
+  }
+
+  .userform__g8 {
+    grid-row: 10 / 11;
+  }
+
+  .userform__g9 {
+    grid-row: 12 / 13;
+  }
+
+  .userform__g10 {
+    grid-row: 13 / 14;
+  }
+
+  .userform__g11 {
+    grid-row: 14 / 15;
+  }
+
+  .userform__g12 {
+    grid-row: 15 / 16;
+  }
+
+  .userform__g13 {
+    grid-row: 17 / 18;
+  }
+
+  .userform__container {
+    overflow-y: scroll;
+    /* padding: 2rem; */
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
+  .userform__form-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    width: 50vw;
+    padding: 3rem 25vw 2rem;
+    border-radius: 0;
+    background-color: var(--background-color);
+    border-top: 0.275rem solid var(--primary-color);
+  }
+
+  .userform__logo-web {
+    display: none;
+  }
+
+  .userform__logo-mobile {
+    justify-self: center;
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    display: block;
+    margin: 2rem;
+    margin-top: 0;
+  }
+
+  .userform__logo-mobile > h1 {
+    font-size: 3rem;
+  }
+
+  .userform__radiobuttons-container {
+    grid-column: 1 / 3;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .userform__radiobutton1 {
+    justify-content: flex-start;
+  }
+
+  .userform__radiobutton2 {
+    justify-content: flex-end;
+  }
+
+  .userform__radio-label {
+    font-family: "b612", sans-serif;
+    padding: 0.5rem 0.2rem 0.5rem 0.7rem;
+    width: 22vw;
+    border-radius: 0.3rem;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #f7f7f7;
+  }
+
+  .userform__radio-label:before {
+    content: "";
+    height: 1rem;
+    width: 1rem;
+    border: 0.0625rem solid #818181;
+    border-radius: 50%;
+    margin-right: 0.66rem;
+  }
+
+  input[type="radio"]:checked + label:before {
+    content: "";
+    background-color: white;
+    height: 0.48125rem;
+    width: 0.48125rem;
+    border: 0.34375rem solid #dc3806;
+    border-radius: 50%;
+    margin-right: 0.66rem;
+  }
+  /*  title  */
+
+  .userform__title-container > h2 {
+    font-family: var(--font-family);
+    color: var(--primary-text-color);
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    font-size: 27px;
+    line-height: 45px;
+    padding-bottom: 1.875rem;
+  }
+
+  /*  task text  */
+
+  .userform__description {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    font-family: var(--font-family);
+    font-size: 16px;
+    line-height: 1.76rem;
+    text-align: start;
+  }
+
+  .userform__g5,
+  .userform__g7,
+  .userform__g11 {
+    margin-top: 1rem;
+  }
+  .userform__text-input {
+    width: calc(50vw - 1rem);
+    margin-top: 0.4rem;
+    height: 2.2rem;
+    background-color: #f7f7f7;
+    font-size: 16px;
+    border-radius: 0.3rem;
+  }
+
+  .userform__select-input {
+    margin-top: 0.4rem;
+    height: 2.64rem;
+    background-color: #f7f7f7;
+    border: 0.03125rem solid #b1b4b6;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    padding: 0 0.55rem;
+    font-size: 1rem;
+
+    /*  replacing the default arrow  */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-size: 0.9625rem 0.61875rem;
+    background-image: url(./icons/expand.svg);
+    background-repeat: no-repeat;
+    background-position: right 1.03125rem top 50%;
+  }
+
+  /*  button  */
+  .userform__button {
+    justify-self: center;
+    margin-top: 0;
+    height: 3.2rem;
+    font-size: 1.375rem;
+    border: 0.2rem solid var(--primary-color);
+    color: white;
+    background-color: var(--primary-color);
+    font-family: var(--font-family);
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+}
+
 /* ------- user -------*/
 
 /* ------- drinks -------*/
@@ -748,7 +997,7 @@ input[type="radio"]:checked + label:before {
   grid-row: 1 / 2;
   grid-column: 2 / 3;
   justify-self: center;
-  margin: 8rem 0rem 3rem;
+  margin: 10rem 0rem 3rem;
 }
 
 .drinks__main-btn {
@@ -798,31 +1047,26 @@ input[type="radio"]:checked + label:before {
 }
 /*  */
 .drinkcard__plus-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  cursor: pointer;
-  transition-duration: 0.4s;
   grid-row: 1 / 2;
   grid-column: 4 /5;
-  justify-self: end;
-  align-self: center;
-  color: #6f7780;
 }
 
 .drinkcard__del-icon {
+  transform: rotate(45deg);
+  grid-row: 3 / 4;
+}
+
+.drinkcard__action-icon {
+  cursor: pointer;
   width: 2.5rem;
   height: 2.5rem;
-  transform: rotate(45deg);
-  cursor: pointer;
-  transition-duration: 0.4s;
-  grid-row: 3 / 4;
   justify-self: end;
   align-self: center;
   color: #6f7780;
+  transition-duration: 0.4s;
 }
 
-.drinkcard__del-icon:hover,
-.drinkcard__plus-icon:hover {
+.drinkcard__action-icon:hover {
   color: var(--primary-text-color);
 }
 
@@ -832,7 +1076,7 @@ input[type="radio"]:checked + label:before {
   grid-row: 3 / 4;
 }
 
-.drinkcard__parameter-container > h4,
+.drinkcard__parametericontainer > h4,
 .drinkcard__parameter-container > h3 {
   font-weight: 400;
   margin: 0;
@@ -1068,7 +1312,7 @@ input[type="radio"]:checked + label:before {
   }
 
   .drinks__main-btns {
-    margin: 8rem 0rem 3rem;
+    margin: 10rem 0rem 3rem;
   }
 
   .drinks__main-btn {
@@ -1095,7 +1339,7 @@ input[type="radio"]:checked + label:before {
   }
 
   .drinks__main-btns {
-    margin: 11rem 0rem 3rem;
+    margin: 12.5rem 0rem 3rem;
   }
 
   .drinks__logo {
@@ -1129,52 +1373,185 @@ input[type="radio"]:checked + label:before {
     left: 0;
     right: 0;
     height: auto;
-    width: 80vw;
-    padding: 3rem 10vw 2rem;
+    width: 85vw;
+    height: calc(100vh - 13vh - 0.275rem);
+    padding: 7vh 7.5vw 6vh;
     border-radius: 0;
     background-color: var(--background-color);
     border-top: 0.275rem solid var(--primary-color);
+    overflow-y: hidden;
   }
 
   .drinks__main-btn {
-    width: 37vw;
-    font-size: 1.5rem;
+    width: 40vw;
+    font-size: 1.3rem;
+    padding: 0.65rem 0;
+    border-width: 0.2rem;
+    border-radius: 0.4rem;
   }
 
   .drinks__submit-btn {
     margin: 0;
-    margin-left: 3vw;
+    margin-left: 2.5vw;
   }
 
   .drinks__add-btn {
     margin: 0;
-    margin-right: 3vw;
-  }
-
-  .drinks__main-btns {
-    width: 80vw;
-    display: flex;
-    justify-content: space-between;
-    margin: 11rem 0rem 2rem;
-  }
-
-  .drinkcard__container {
-    margin: 1rem 0rem;
-    width: 70vw;
-    box-shadow: none;
+    margin-right: 2.5vw;
   }
 
   .drinks__logo {
     margin-top: 0;
   }
 
-  .newdrink__form {
-    margin: 1rem 0;
-    width: auto;
-    box-shadow: none;
+  .drinks__logo > h1 {
+    font-size: 2.8em;
+  }
+
+  .drinks__main-btns {
+    width: 85vw;
+    display: flex;
+    justify-content: space-between;
+    margin: 10rem 0rem 1rem;
+  }
+
+  .drinkcard__title > h2 {
+    font-size: 1.3rem;
+  }
+
+  .drinkcard__parameter-container {
+    align-content: flex-end;
   }
 
   .drinkcard__parameter-container > h4 {
-    font-size: 14px;
+    display: none;
+  }
+
+  .drinkcard__parameter-container > h3 {
+    font-size: 1rem;
+    padding: 0;
+  }
+
+  .drinkcard__container {
+    margin: 1rem 0rem;
+    width: 70vw;
+    grid-template-rows: 1fr auto 0.8fr;
+    box-shadow: none;
+    grid-template-columns: auto;
+  }
+
+  .drinkcard__action-icon {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .drinkcard__shot-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    padding-right: 1rem;
+  }
+
+  .drinkcard__other-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding-right: 0.8rem;
+    fill: var(--primary-text-color);
+  }
+
+  .drinkcard__beer-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding-right: 0.8rem;
+    fill: var(--primary-text-color);
+  }
+
+  .drinkcard__wine-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+    padding-right: 0.7rem;
+    fill: var(--primary-text-color);
+  }
+
+  .drinkcard__martini-icon {
+    width: 2.85rem;
+    height: 2.85rem;
+    padding-right: 0.75rem;
+    fill: var(--primary-text-color);
+  }
+
+  .drinkcard__cognac-icon {
+    width: 2.55rem;
+    height: 2.55rem;
+    padding-right: 1rem;
+    fill: var(--primary-text-color);
+  }
+
+  .drinkcard__mojito-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding-right: 0.8rem;
+    fill: var(--primary-text-color);
+  }
+
+  .drinkcard__whisky-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    padding-right: 1rem;
+    fill: var(--primary-text-color);
+  }
+
+  .drinkcard__coctail-icon {
+    width: 2.7rem;
+    height: 2.7rem;
+    padding-right: 0.7rem;
+    fill: var(--primary-text-color);
+  }
+
+  .newdrink__container {
+    width: 70vw;
+  }
+
+  .newdrink__form {
+    width: 70vw;
+    margin: 1rem 0;
+    box-shadow: none;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .newdrink__parameter-container {
+    flex-direction: row;
+    grid-column: 1 / 3;
+  }
+
+  .newdrink__parameter-container1 {
+    grid-row: 3 / 4;
+  }
+  .newdrink__parameter-container2 {
+    grid-row: 4 / 5;
+  }
+
+  .newdrink__parameter-container3 {
+    grid-row: 5 / 6;
+  }
+
+  .newdrink__title {
+    flex-direction: column;
+  }
+
+  .newdrink__del-icon {
+    grid-row: 6 / 7;
+    grid-column: 2 / 3;
+    justify-self: center;
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .newdrink__plus-icon {
+    grid-row: 6 / 7;
+    grid-column: 1 / 2;
+    justify-self: center;
+    height: 2rem;
+    width: 2rem;
   }
 }

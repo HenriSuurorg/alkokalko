@@ -103,7 +103,10 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
             Lisa jook
           </button>
           <button
-            onClick={() => calculateBAC()}
+            disabled={drinks.length === 0 ? true : false}
+            onClick={() => {
+              calculateBAC();
+            }}
             className="drinks__main-btn drinks__submit-btn"
           >
             Kinnita
