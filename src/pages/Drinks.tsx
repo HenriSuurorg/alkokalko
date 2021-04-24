@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from "react";
+import React, { useState } from "react";
 import { RouteComponentProps } from "react-router";
 import { useLocalStorage } from "../utils/useLocalState";
 import { drinkType, duplicateDrinkType } from "../types";
@@ -25,10 +25,6 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
     eliminationRate,
     weight,
   } = userParameters(match.params.id);
-
-  let vhStyle = {
-    "--innerHeight": window.innerHeight,
-  } as CSSProperties;
 
   const calculateBAC = () => {
     const currentBac2 = bacCalculator({
@@ -87,7 +83,7 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
   };
 
   return (
-    <div className="container drinks__container" style={vhStyle}>
+    <div className="container drinks__container">
       <div className="Logo drinks__logo">
         <h1>Alko-</h1>
         <h1>Kalko</h1>

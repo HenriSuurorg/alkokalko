@@ -149,11 +149,11 @@ export const NewDrink: React.FC<Props> = ({
               </div>
             </div>
             <CgMathPlus
-              className="drinkcard__del-icon newdrink__del-icon"
+              className="drinkcard__del-icon drinkcard__action-icon newdrink__del-icon"
               onClick={() => cancelAdding()}
             />
             <CgMathPlus
-              className="drinkcard__plus-icon newdrink__plus-icon"
+              className="drinkcard__plus-icon drinkcard__action-icon newdrink__plus-icon"
               onClick={() => handleSubmit()}
             />
           </form>
