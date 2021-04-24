@@ -1372,10 +1372,10 @@ input[type="radio"]:checked + label:before {
     top: 0;
     left: 0;
     right: 0;
-    height: auto;
     width: 85vw;
-    height: calc(100vh - 13vh - 0.275rem);
-    padding: 7vh 7.5vw 6vh;
+    height: calc(100vh - 10vh - 0.275rem);
+    height: -webkit-fill-available;
+    padding: 4vh 7.5vw 6vh;
     border-radius: 0;
     background-color: var(--background-color);
     border-top: 0.275rem solid var(--primary-color);
@@ -1412,7 +1412,7 @@ input[type="radio"]:checked + label:before {
     width: 85vw;
     display: flex;
     justify-content: space-between;
-    margin: 10rem 0rem 1rem;
+    margin: 9.5rem 0rem 1rem;
   }
 
   .drinkcard__title > h2 {
