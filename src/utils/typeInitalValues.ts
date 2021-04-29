@@ -1,14 +1,3 @@
-/* 
-              <option value="large-beer">Suur õlu</option>
-              <option value="small-beer">Väike õlu</option>
-              <option value="glass-wine">Klaas veini</option>
-              <option value="shot-vodka">Pits viina</option>
-              <option value="gin">Gin</option>
-              <option value="cognac">Konjak</option>
-              <option value="whisky">Viski</option>
-              <option value="coctail">Kokteil</option>
-              <option value="other">Muu jook</option>
-*/
 export const typeInitalValues = (type: string) => {
   let volume = "";
   let abv = "";

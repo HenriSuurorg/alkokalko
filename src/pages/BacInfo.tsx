@@ -92,7 +92,10 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
 
   return (
     <div className="container" style={{ maxWidth: "800px" }}>
-      <h1>Sinu vere alkoholisisaldus: {currentBac}</h1>
+      <h1>
+        Sinu vere alkoholisisaldus{" "}
+        <b>{(currentBac * 10).toFixed(2)} promilli</b>
+      </h1>
 
       <h1>
         Sa oled kaine ~{soberingTime(graphBacData, curBacIdx, eliminationRate)}{" "}

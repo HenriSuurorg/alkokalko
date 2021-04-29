@@ -156,9 +156,21 @@ export const NewDrink: React.FC<Props> = ({
               className="drinkcard__plus-icon drinkcard__action-icon newdrink__plus-icon"
               onClick={() => handleSubmit()}
             />
-            <hr className="newdrink__line" />
+            <button
+              className="newdrink__mobile-del-button"
+              onClick={() => cancelAdding()}
+            />
+            <CgMathPlus
+              className="drinkcard__plus-icon drinkcard__action-icon newdrink__plus-icon"
+              onClick={() => handleSubmit()}
+            />
             <button className="newdrink__mobile-del-button">Kustuta</button>
-            <button className="newdrink__mobile-plus-button">Lisa</button>
+            <button
+              className="newdrink__mobile-plus-button"
+              onClick={() => handleSubmit()}
+            >
+              Lisa
+            </button>
           </form>
         )}
       </Formik>
