@@ -15,18 +15,16 @@ interface Props
       currentBac: number;
       graphBacData: number[];
       curBacIdx: number;
-      currentBac2: number;
     }
   > {}
 
 export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
-  const { currentBac, graphBacData, curBacIdx, currentBac2 } = location.state;
+  const { currentBac, graphBacData, curBacIdx } = location.state;
   const { eliminationRate } = userParameters(match.params.id);
 
   let labels = [];
 
   for (let n in graphBacData) {
-    // labels.push("");
     labels.push((parseFloat(n) * 0.01).toFixed(2));
   }
 
@@ -81,6 +79,7 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
         },
       ],
     },
+    tooltips: { enabled: false },
     scales: {
       xAxes: [
         {
@@ -91,24 +90,54 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
   };
 
   return (
-    <div className="container" style={{ maxWidth: "800px" }}>
-      <h1>
-        Sinu vere alkoholisisaldus{" "}
-        <b>{(currentBac * 10).toFixed(2)} promilli</b>
-      </h1>
-
-      <h1>
-        Sa oled kaine ~{soberingTime(graphBacData, curBacIdx, eliminationRate)}{" "}
-        tunni pärast
-      </h1>
-      <h3>{description}</h3>
-      <button onClick={editDrinks}>muuda jooke</button>
-      <button onClick={editUser}>muuda kasutajat</button>
-      <Line
-        data={graphData as any}
-        legend={{ display: false }}
-        options={options as ChartOptions}
-      />
+    <div className="container bac__container">
+      <div className="Logo bac__logo">
+        <h1>Alko-</h1>
+        <h1>Kalko</h1>
+      </div>
+      <div className="bac__buttons">
+        <h2 onClick={editUser} className="bac__edit-user-button">
+          muuda kasutajat
+        </h2>
+        <h2 onClick={editDrinks} className="bac__edit-drinks-button">
+          muuda jooke
+        </h2>
+      </div>
+      <div className="bac__info-container">
+        <div className="bac__main-text">
+          <h2>
+            Sinu vere alkoholisisaldus on{" "}
+            <b>{(currentBac * 10).toFixed(2)} promilli</b>
+          </h2>
+          <h5>
+            Mis tähendab, et 1000 milliliitris sinu organismis ringlevas veres
+            on 1.4 grammi puhast alkoholi.
+          </h5>
+        </div>
+        <hr className="bac__line" />
+        <h3 className="bac__description">{description}</h3>
+        <hr className="bac__line" />
+        <div className="bac__main-text">
+          <h2>
+            Sa oled kaine{" "}
+            <b>
+              ~{soberingTime(graphBacData, curBacIdx, eliminationRate)} tunni
+              pärast
+            </b>
+          </h2>
+          <h5>
+            Tegmist on oletusega! Seda aega ei tohi kasutada, et välja
+            arvestada, millal võib rooli minna!
+          </h5>
+        </div>
+        <div className="bac__graph-container">
+          <Line
+            data={graphData as any}
+            legend={{ display: false }}
+            options={options as ChartOptions}
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -133,6 +133,7 @@
   padding: 0;
   margin: 0;
   display: flex;
+  font-family: var(--font-family);
   flex-direction: column;
   justify-content: center;
   text-align: center;
@@ -286,7 +287,7 @@ input[type="radio"]:checked + label:before {
   margin: 0;
   font-weight: 400;
   margin-top: 2.0625rem;
-  font-family: var(--font-family);
+  font-family: var(--font-nameamily);
   font-size: 1.05rem;
   line-height: 1.76rem;
   text-align: justify;
@@ -370,7 +371,7 @@ input[type="radio"]:checked + label:before {
   .userform__radio-label {
     padding: 0.4375rem 5.625rem 0.4375rem 0.9375rem;
     width: 8.75rem;
-    font-size: 0.9375rem;
+    font-size: 0.9375remname;
   }
 
   .userform__radio-label:before {
@@ -537,7 +538,6 @@ input[type="radio"]:checked + label:before {
 
   .userform__container {
     overflow-y: scroll;
-    /* padding: 2rem; */
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -974,7 +974,7 @@ input[type="radio"]:checked + label:before {
   left: 0;
 }
 .drinks__logo > h1 {
-  font-size: 3rem;
+  font-size: 2.8rem;
 }
 
 .drinks__edit-user-btn {
@@ -1019,8 +1019,6 @@ input[type="radio"]:checked + label:before {
   background-color: var(--primary-color);
   color: var(--background-color);
 }
-
-/* ------- drinks -------*/
 
 /* ------- drinkcard -------*/
 
@@ -1305,40 +1303,14 @@ input[type="radio"]:checked + label:before {
 }
 
 @media only screen and (max-width: 1025px) {
-  .drinks__container {
-    grid-template-columns: 2fr 7fr 2fr;
-  }
   .drinkcard__container {
     width: 53vw;
-  }
-
-  .newdrink__form {
-    width: 53vw;
-  }
-
-  .drinks__main-btns {
-    margin: 10rem 0rem 3rem;
   }
 
   .drinks__main-btn {
     width: 13rem;
   }
 
-  .drinks__edit-user-btn {
-    font-size: 0.8rem;
-    margin: 1.8rem;
-  }
-
-  .drinks__logo {
-    margin: 1.8rem;
-  }
-
-  .drinks__logo > h1 {
-    font-size: 2.5rem;
-  }
-}
-
-@media only screen and (max-width: 1025px) {
   .drinks__container {
     grid-template-columns: 0fr 7fr 0fr;
   }
@@ -1351,6 +1323,7 @@ input[type="radio"]:checked + label:before {
     grid-column: 2 / 3;
     justify-self: center;
     position: static;
+    margin: 1.8rem;
     margin-bottom: 3rem;
   }
 
@@ -1625,3 +1598,208 @@ input[type="radio"]:checked + label:before {
     justify-self: start;
   }
 }
+
+/* ------- drinks -------*/
+
+/* ------- bac info -------*/
+
+.bac__container {
+  width: 100vw;
+  min-height: 100vh;
+  position: absolute;
+  display: grid;
+  grid-template-columns: 2fr 6fr 2fr;
+  grid-template-rows: 1fr auto 1fr;
+  top: 0;
+  left: 0;
+  font-family: var(--font-family);
+}
+
+.bac__logo {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  margin: 2rem;
+  margin-bottom: 0;
+  top: 0;
+  left: 0;
+}
+
+.bac__logo > h1 {
+  font-size: 2.8rem;
+}
+
+.bac__edit-user-button,
+.bac__edit-drinks-button {
+  color: var(--primary-color);
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 2rem 2rem 0 0;
+  cursor: pointer;
+}
+
+.bac__buttons {
+  grid-row: 1 / 2;
+  grid-column: 2 / 4;
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: row;
+}
+
+.bac__info-container {
+  display: block;
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  background-color: white;
+  border-radius: 0.625rem;
+  box-shadow: var(--primary-shadow);
+  padding: 4rem 4rem;
+  width: 50vw;
+  max-width: 65vh;
+  justify-self: center;
+}
+
+.bac__main-text > h2 {
+  font-weight: 400;
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin: 0;
+}
+
+.bac__main-text > h5 {
+  font-weight: 400;
+  color: #818181;
+  font-size: 0.8rem;
+  margin-top: 0;
+  font-style: italic;
+}
+
+.bac__line {
+  display: none;
+}
+
+.bac__description {
+  font-weight: 400;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+  line-height: 145%;
+}
+
+.bac__graph-container {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  max-width: 65vh;
+}
+
+@media only screen and (max-width: 680px) {
+  .bac__container {
+    width: 100vw;
+    border-top: 0.275rem solid var(--primary-color);
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr;
+    top: 0;
+    left: 0;
+    background-color: var(--background-color);
+  }
+
+  .bac__logo {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    margin: 2rem;
+    justify-self: center;
+    margin-bottom: 0;
+    top: 0;
+    left: 0;
+  }
+
+  .bac__logo > h1 {
+    font-size: 2.8rem;
+  }
+
+  .bac__edit-user-button,
+  .bac__edit-drinks-button {
+    color: var(--primary-color);
+    font-weight: 400;
+    font-size: 1rem;
+    margin: 2rem 2rem 0 0;
+    cursor: pointer;
+  }
+
+  .bac__buttons {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80vw;
+  }
+
+  .bac__info-container {
+    display: block;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    background-color: var(--background-color);
+    box-shadow: none;
+    border-radius: 0.625rem;
+    width: 80vw;
+    padding: 3rem 10vw 2rem;
+    justify-self: center;
+  }
+
+  .bac__main-text > h2 {
+    font-weight: 400;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  .bac__main-text > h5 {
+    font-weight: 400;
+    color: #818181;
+    font-size: 0.7rem;
+    margin-top: 0;
+    font-style: italic;
+  }
+
+  .bac__description {
+    font-weight: 400;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 145%;
+    align-self: center;
+  }
+
+  .bac__edit-drinks-button,
+  .bac__edit-user-button {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: bold;
+    height: 1.4rem;
+    padding: 0.5rem;
+    margin: 0;
+    border-width: 0.185rem;
+    border-style: solid;
+    border-radius: 0.3rem;
+    cursor: pointer;
+  }
+
+  .bac__line {
+    grid-column: 1 / 2;
+    color: #a5a6a7;
+    border: none;
+    height: 1px;
+    background-color: #a5a6a7;
+    margin: 1rem 0;
+    display: block;
+  }
+
+  .bac__graph-container {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    max-width: 65vh;
+  }
+}
+/* ------- bac info -------*/

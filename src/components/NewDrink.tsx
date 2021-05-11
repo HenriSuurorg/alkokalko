@@ -32,7 +32,7 @@ export const NewDrink: React.FC<Props> = ({
           volume: duplicateDrinkData?.volume || "500",
           unit: duplicateDrinkData?.unit || "ml",
           timePassed: "",
-          abv: duplicateDrinkData?.abv || "40",
+          abv: duplicateDrinkData?.abv || "5.3",
         }}
         onSubmit={(values) => {
           closeForm(

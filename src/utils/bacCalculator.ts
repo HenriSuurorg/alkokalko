@@ -47,12 +47,6 @@ export const bacCalculator = ({
             eliminationRate;
       }
 
-      console.log(`--------[DRINK NUMBER: ${i + 1}]--------`);
-      console.log(`Type: ${curDrink.type}`);
-      console.log(`BAC before: ${acc.toFixed(4)}`);
-      console.log(`BAC after: ${curBac.toFixed(4)}`);
-      console.log(`---------------------------------`);
-
       return curBac;
     },
     0
