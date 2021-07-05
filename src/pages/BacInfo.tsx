@@ -1,26 +1,37 @@
-import React from "react";
-import { RouteComponentProps } from "react-router";
-import { Line } from "react-chartjs-2";
-import { bacStatus } from "../utils/bacStatus";
-import { userParameters } from "../utils/userParameters";
-import "chartjs-plugin-annotation";
-import { ChartOptions } from "chart.js";
-import { soberingTime } from "../utils/soberingTime";
+import React, { useEffect } from 'react';
+import { RouteComponentProps } from 'react-router';
+import { Line } from 'react-chartjs-2';
+import { bacStatus } from '../utils/bacStatus';
+import { userParameters } from '../utils/userParameters';
+import 'chartjs-plugin-annotation';
+import { ChartOptions } from 'chart.js';
+import { soberingTime } from '../utils/soberingTime';
+import { useLocalStorage } from '../utils/useLocalState';
 
 interface Props
   extends RouteComponentProps<
     { id: string },
     {},
     {
-      currentBac: number;
-      graphBacData: number[];
-      curBacIdx: number;
+      currentBac: number | any;
+      graphBacData: number[] | any;
+      curBacIdx: number | any;
     }
   > {}
 
 export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
-  const { currentBac, graphBacData, curBacIdx } = location.state;
   const { eliminationRate } = userParameters(match.params.id);
+  const [currentBac, setcurrentBac] = useLocalStorage('currentBac', []);
+  const [graphBacData, setgraphBacData] = useLocalStorage('graphBacData', []);
+  const [curBacIdx, setcurBacIdx] = useLocalStorage('curBacIdx', []);
+
+  useEffect(() => {
+    if (location.state !== undefined) {
+      setcurrentBac(location.state.currentBac);
+      setgraphBacData(location.state.graphBacData);
+      setcurBacIdx(location.state.curBacIdx);
+    }
+  }, [location.state]);
 
   let labels = [];
 
@@ -33,26 +44,26 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
   };
 
   const editUser = () => {
-    history.push("/user");
+    history.push('/user');
   };
 
-  const description = bacStatus(currentBac);
+  const description = bacStatus(currentBac / 10);
 
   const graphData = {
     labels: labels,
     datasets: [
       {
-        label: "vere alkoholisisaldus",
+        label: 'vere alkoholisisaldus',
         fill: false,
         lineTension: 0.1,
-        backgroundColor: "rgba(75,192,192,0.4)",
-        borderColor: "rgba(220,56,6,100)",
+        backgroundColor: 'rgba(75,192,192,0.4)',
+        borderColor: 'rgba(220,56,6,100)',
         borderDashOffset: 0.0,
-        borderJoinStyle: "miter",
+        borderJoinStyle: 'miter',
         pointBorderWidth: 1,
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: "rgba(75,192,192,1)",
-        pointHoverBorderColor: "rgba(220,220,220,1)",
+        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+        pointHoverBorderColor: 'rgba(220,220,220,1)',
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
@@ -64,16 +75,16 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
     annotation: {
       annotations: [
         {
-          type: "line",
-          mode: "vertical",
-          scaleID: "x-axis-0",
+          type: 'line',
+          mode: 'vertical',
+          scaleID: 'x-axis-0',
           value: (curBacIdx * 0.01).toFixed(2),
-          borderColor: "black",
+          borderColor: 'black',
           borderWidth: 2,
           borderDash: [5, 5],
           label: {
-            backgroundColor: "rgba(220,56,6,100)",
-            content: "praegune joove",
+            backgroundColor: 'rgba(220,56,6,100)',
+            content: 'praegune joove',
             enabled: false,
           },
         },
@@ -106,25 +117,29 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
       <div className="bac__info-container">
         <div className="bac__main-text">
           <h2>
-            Sinu vere alkoholisisaldus on{" "}
-            <b>{(currentBac * 10).toFixed(2)} promilli</b>
+            Sinu vere alkoholisisaldus on{' '}
+            <b>{currentBac.toFixed(2)} promilli</b>
           </h2>
           <h5>
             Mis tähendab, et 1000 milliliitris sinu organismis ringlevas veres
-            on 1.4 grammi puhast alkoholi.
+            on {currentBac.toFixed(2)} grammi puhast alkoholi.
           </h5>
         </div>
         <hr className="bac__line" />
         <h3 className="bac__description">{description}</h3>
         <hr className="bac__line" />
         <div className="bac__main-text">
-          <h2>
-            Sa oled kaine{" "}
-            <b>
-              ~{soberingTime(graphBacData, curBacIdx, eliminationRate)} tunni
-              pärast
-            </b>
-          </h2>
+          {currentBac === 0 ? (
+            <h2>Tõenäoliselt oled sa juba kaine</h2>
+          ) : (
+            <h2>
+              Sa oled kaine umbes{' '}
+              <b>
+                {soberingTime(graphBacData, curBacIdx, eliminationRate)} tunni
+                pärast
+              </b>
+            </h2>
+          )}
           <h5>
             Tegmist on oletusega! Seda aega ei tohi kasutada, et välja
             arvestada, millal võib rooli minna!

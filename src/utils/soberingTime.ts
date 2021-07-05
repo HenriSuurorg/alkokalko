@@ -4,7 +4,7 @@ export const soberingTime = (
   eliminationRate: number
 ) => {
   const temp = graphData.slice(curBacIdx, graphData.length);
-  const max = Math.max(...temp);
+  const max = Math.max(...temp) / 10;
   const idx = temp.findIndex((val) => val === max);
 
   const time = max / eliminationRate - idx / 100;

@@ -1,5 +1,5 @@
-import { drinkType } from "../types";
-import { drinkSorter } from "./drinkSorter";
+import { drinkType } from '../types';
+import { drinkSorter } from './drinkSorter';
 
 export const graphDataCalculator = ({
   widmarkFactor,
@@ -49,10 +49,14 @@ export const graphDataCalculator = ({
         graphBacData.push(0);
       }
       descendingDrinks.shift();
+      if (descendingDrinks.length === 1) {
+        graphBacData.push(0);
+        break;
+      }
       maxTime = parseFloat(descendingDrinks[0].timePassed);
       Time = 0;
     } else {
-      graphBacData.push(Bac - Time * eliminationRate); // Time on liiga suur
+      graphBacData.push((Bac - Time * eliminationRate) * 10); // Time on liiga suur
       Time = Time + 0.01;
     }
   }
