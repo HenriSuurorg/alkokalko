@@ -40,21 +40,27 @@ export const graphDataCalculator = ({
       break;
     }
     if (Bac - Time * eliminationRate < 0) {
-      const soberTime =
-        parseFloat(descendingDrinks[0].timePassed) -
-        parseFloat(descendingDrinks[1].timePassed) -
-        Time;
+      let soberTime: number;
+
+      if (descendingDrinks.length === 1) {
+        soberTime = parseFloat(descendingDrinks[0].timePassed) - Time;
+      } else {
+        soberTime =
+          parseFloat(descendingDrinks[0].timePassed) -
+          parseFloat(descendingDrinks[1].timePassed) -
+          Time;
+      }
       const multiplier = soberTime / 0.01;
       for (let i = multiplier; i >= 0; i--) {
         graphBacData.push(0);
       }
-      descendingDrinks.shift();
       if (descendingDrinks.length === 1) {
-        graphBacData.push(0);
         break;
+      } else {
+        descendingDrinks.shift();
+        maxTime = parseFloat(descendingDrinks[0].timePassed);
+        Time = 0;
       }
-      maxTime = parseFloat(descendingDrinks[0].timePassed);
-      Time = 0;
     } else {
       graphBacData.push((Bac - Time * eliminationRate) * 10); // Time on liiga suur
       Time = Time + 0.01;

@@ -8,7 +8,7 @@ export const typeInitalValues = (type: string) => {
     volume = '330';
     abv = '4.8';
   } else if (type === 'glass-wine') {
-    volume = '170';
+    volume = '150';
     abv = '13';
   } else if (type === 'shot-vodka') {
     volume = '40';
