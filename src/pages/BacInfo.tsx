@@ -122,7 +122,7 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
           </h2>
           <h5>
             Mis tähendab, et 1000 milliliitris sinu organismis ringlevas veres
-            on {Number(currentBac ).toFixed(2)} grammi puhast alkoholi.
+            on {Number(currentBac).toFixed(2)} grammi puhast alkoholi.
           </h5>
         </div>
         <hr className="bac__line" />
