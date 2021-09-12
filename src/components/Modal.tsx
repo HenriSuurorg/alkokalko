@@ -13,16 +13,16 @@ export const Modal: React.FC<Props> = ({ setModal }) => {
           onClick={() => setModal(false)}
         ></div>
         <div className="bac__modal-content">
-          <h2 className="bac__modal-content-title">Tähelepanu!</h2>
+          <h2 className="bac__modal-content-title"> Tähelepanu!</h2>
           <h3 className="bac__modal-content-body">
-            Tegemist on oletusega, mida ei saa ja ei tohi kasutada otsustamaks,
-            millal rooli minna!
+            Tegemist on oletusega, mida ei saa ning ei tohi kasutada
+            otsustamaks, millal rooli minna!
           </h3>
           <button
-            className="bac__modal-content-button"
+            className="bac__modal-content-btn"
             onClick={() => setModal(false)}
           >
-            CLOSE
+            Kinnita
           </button>
         </div>
       </div>
