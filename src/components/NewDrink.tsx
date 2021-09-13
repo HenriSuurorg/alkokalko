@@ -1,9 +1,9 @@
-import React from "react";
-import { Formik } from "formik";
-import { drinkSchema } from "../validationSchemas/drinkSchema";
-import { duplicateDrinkType } from "../types";
-import { typeInitalValues } from "../utils/typeInitalValues";
-import { CgMathPlus } from "react-icons/cg";
+import React from "react"
+import { Formik } from "formik"
+import { drinkSchema } from "../validationSchemas/drinkSchema"
+import { duplicateDrinkType } from "../types"
+import { typeInitalValues } from "../utils/typeInitalValues"
+import { CgMathPlus } from "react-icons/cg"
 
 interface Props {
   closeForm: (
@@ -12,10 +12,10 @@ interface Props {
     unit: string,
     abv: string,
     timePassed: string
-  ) => void;
-  duplicateDrinkData: duplicateDrinkType | null;
-  addingNewDrink: boolean;
-  cancelAdding: () => void;
+  ) => void
+  duplicateDrinkData: duplicateDrinkType | null
+  addingNewDrink: boolean
+  cancelAdding: () => void
 }
 
 export const NewDrink: React.FC<Props> = ({
@@ -41,7 +41,7 @@ export const NewDrink: React.FC<Props> = ({
             values.unit,
             values.abv,
             values.timePassed
-          );
+          )
         }}
         validationSchema={drinkSchema}
       >
@@ -83,7 +83,7 @@ export const NewDrink: React.FC<Props> = ({
               <h4
                 style={{
                   color:
-                    errors.volume && touched.volume ? "#ff0033" : "#3f4649",
+                    errors.volume && touched.volume ? "#ff0033" : "#6f7780",
                 }}
               >
                 Kui palju?
@@ -105,7 +105,7 @@ export const NewDrink: React.FC<Props> = ({
             <div className="newdrink__parameter-container newdrink__parameter-container2">
               <h4
                 style={{
-                  color: errors.abv && touched.abv ? "#ff0033" : "#3f4649",
+                  color: errors.abv && touched.abv ? "#ff0033" : "#6f7780",
                 }}
               >
                 Kui kange?
@@ -129,7 +129,7 @@ export const NewDrink: React.FC<Props> = ({
                   color:
                     errors.timePassed && touched.timePassed
                       ? "#ff0033"
-                      : "#3f4649",
+                      : "#6f7780",
                 }}
               >
                 {" "}
@@ -175,5 +175,5 @@ export const NewDrink: React.FC<Props> = ({
         )}
       </Formik>
     </div>
-  );
-};
+  )
+}
