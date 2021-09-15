@@ -1,30 +1,24 @@
-import React, { useState } from "react";
-import { RouteComponentProps } from "react-router";
-import { useLocalStorage } from "../utils/useLocalState";
-import { drinkType, duplicateDrinkType } from "../types";
-import { DrinkCards } from "../components/DrinkCards";
-import { NewDrink } from "../components/NewDrink";
-import { bacCalculator } from "../utils/bacCalculator";
-import { graphDataCalculator } from "../utils/graphDataCalculator";
-import { drinkSorter } from "../utils/drinkSorter";
-import { userParameters } from "../utils/userParameters";
+import React, { useState } from "react"
+import { RouteComponentProps } from "react-router"
+import { useLocalStorage } from "../utils/useLocalState"
+import { drinkType, duplicateDrinkType } from "../types"
+import { DrinkCards } from "../components/DrinkCards"
+import { NewDrink } from "../components/NewDrink"
+import { bacCalculator } from "../utils/bacCalculator"
+import { graphDataCalculator } from "../utils/graphDataCalculator"
+import { drinkSorter } from "../utils/drinkSorter"
+import { userParameters } from "../utils/userParameters"
 
 interface DrinksProps extends RouteComponentProps<{ id: string }> {}
 
 export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
-  const [drinks, setDrinks] = useLocalStorage("drinks", []);
-  const [
-    duplicateDrink,
-    setDuplicateDrink,
-  ] = useState<duplicateDrinkType | null>(null);
-  const [addingNewDrink, setAddingNewDrink] = useState(false);
+  const [drinks, setDrinks] = useLocalStorage("drinks", [])
+  const [duplicateDrink, setDuplicateDrink] =
+    useState<duplicateDrinkType | null>(null)
+  const [addingNewDrink, setAddingNewDrink] = useState(false)
 
-  const {
-    widmarkFactor,
-    absorptionRate,
-    eliminationRate,
-    weight,
-  } = userParameters(match.params.id);
+  const { widmarkFactor, absorptionRate, eliminationRate, weight } =
+    userParameters(match.params.id)
 
   const calculateBAC = () => {
     const currentBac2 = bacCalculator({
@@ -33,19 +27,19 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
       eliminationRate,
       weight,
       drinks,
-    });
+    })
     const { graphBacData, currentBac, curBacIdx } = graphDataCalculator({
       widmarkFactor,
       absorptionRate,
       eliminationRate,
       weight,
       drinks,
-    });
+    })
     history.push({
       pathname: `/user/bacinfo/${match.params.id}`,
       state: { currentBac, graphBacData, curBacIdx, currentBac2 },
-    });
-  };
+    })
+  }
 
   const addDuplicateDrink = (drink: drinkType) => {
     setDuplicateDrink({
@@ -53,9 +47,9 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
       volume: drink.volume,
       unit: drink.unit,
       abv: drink.abv,
-    });
-    setAddingNewDrink(true);
-  };
+    })
+    setAddingNewDrink(true)
+  }
 
   const closeForm = (
     type: string,
@@ -64,27 +58,31 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
     abv: string,
     timePassed: string
   ) => {
-    setAddingNewDrink(false);
-    setDuplicateDrink(null);
-    const temp = [{ type, volume, unit, abv, timePassed }, ...drinks];
-    const sortedDrinks = drinkSorter(temp, true);
-    setDrinks(sortedDrinks);
-  };
+    setAddingNewDrink(false)
+    setDuplicateDrink(null)
+    const temp = [{ type, volume, unit, abv, timePassed }, ...drinks]
+    const sortedDrinks = drinkSorter(temp, true)
+    setDrinks(sortedDrinks)
+  }
 
   const cancelAdding = () => {
-    setAddingNewDrink(false);
-    setDuplicateDrink(null);
-  };
+    setAddingNewDrink(false)
+    setDuplicateDrink(null)
+  }
 
   const deleteDrink = (i: number) => {
-    const temp = [...drinks];
-    temp.splice(i, 1);
-    setDrinks(temp);
-  };
+    const temp = [...drinks]
+    temp.splice(i, 1)
+    setDrinks(temp)
+  }
+
+  const goHome = () => {
+    history.push("/")
+  }
 
   return (
     <div className="container drinks__container">
-      <div className="Logo drinks__logo">
+      <div className="Logo drinks__logo" onClick={goHome}>
         <h1>Alko-</h1>
         <h1>Kalko</h1>
       </div>
@@ -105,7 +103,7 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
           <button
             disabled={drinks.length === 0 ? true : false}
             onClick={() => {
-              calculateBAC();
+              calculateBAC()
             }}
             className="drinks__main-btn drinks__submit-btn"
           >
@@ -127,5 +125,5 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
         />{" "}
       </div>
     </div>
-  );
-};
+  )
+}

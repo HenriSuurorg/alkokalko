@@ -48,6 +48,10 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
     history.push("/user")
   }
 
+  const goHome = () => {
+    history.push("/")
+  }
+
   const description = bacStatus(currentBac / 10)
 
   const graphData = {
@@ -103,7 +107,7 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
 
   return (
     <div className="container bac__container">
-      <div className="Logo bac__logo">
+      <div className="Logo bac__logo" onClick={goHome}>
         <h1>Alko-</h1>
         <h1>Kalko</h1>
       </div>

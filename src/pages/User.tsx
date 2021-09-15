@@ -1,15 +1,19 @@
-import React from "react";
-import { Formik } from "formik";
-import { RouteComponentProps } from "react-router";
-import { useLocalStorage } from "../utils/useLocalState";
-import { userParamCalc } from "../utils/userParamCalc";
-import { userSchema } from "../validationSchemas/userSchema";
-import "../Style.css";
+import React from "react"
+import { Formik } from "formik"
+import { RouteComponentProps } from "react-router"
+import { useLocalStorage } from "../utils/useLocalState"
+import { userParamCalc } from "../utils/userParamCalc"
+import { userSchema } from "../validationSchemas/userSchema"
+import "../Style.css"
 
 interface UserProps extends RouteComponentProps {}
 
 export const User: React.FC<UserProps> = ({ history }) => {
-  const [userParams, setUserParams] = useLocalStorage("userParams", {});
+  const [userParams, setUserParams] = useLocalStorage("userParams", {})
+
+  const goHome = () => {
+    history.push("/")
+  }
 
   return (
     <Formik
@@ -29,7 +33,7 @@ export const User: React.FC<UserProps> = ({ history }) => {
           values.sex,
           values.stomachState,
           values.drinkingHabits
-        );
+        )
         setUserParams({
           weight: values.weight,
           height: values.height,
@@ -37,11 +41,11 @@ export const User: React.FC<UserProps> = ({ history }) => {
           sex: values.sex,
           stomachState: values.stomachState,
           drinkingHabits: values.drinkingHabits,
-        });
+        })
 
         history.push(
           `/user/drinks/${params.widmarkFactor};${params.eliminationRate};${params.absorptionRate};${params.weight}`
-        );
+        )
       }}
       validationSchema={userSchema}
     >
@@ -56,12 +60,12 @@ export const User: React.FC<UserProps> = ({ history }) => {
         isValid,
       }) => (
         <div className="userform__container container">
-          <div className="Logo userform__logo-web">
+          <div className="Logo userform__logo-web" onClick={goHome}>
             <h1>Alko-</h1>
             <h1>Kalko</h1>
           </div>
           <form className="userform__form-container">
-            <div className="Logo userform__logo-mobile">
+            <div className="Logo userform__logo-mobile" onClick={goHome}>
               <h1>Alko-</h1>
               <h1>Kalko</h1>
             </div>
@@ -233,5 +237,5 @@ export const User: React.FC<UserProps> = ({ history }) => {
         </div>
       )}
     </Formik>
-  );
-};
+  )
+}
