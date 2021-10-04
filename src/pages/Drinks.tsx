@@ -4,7 +4,6 @@ import { useLocalStorage } from "../utils/useLocalState"
 import { drinkType, duplicateDrinkType } from "../types"
 import { DrinkCards } from "../components/DrinkCards"
 import { NewDrink } from "../components/NewDrink"
-import { bacCalculator } from "../utils/bacCalculator"
 import { graphDataCalculator } from "../utils/graphDataCalculator"
 import { drinkSorter } from "../utils/drinkSorter"
 import { userParameters } from "../utils/userParameters"
@@ -21,13 +20,6 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
     userParameters(match.params.id)
 
   const calculateBAC = () => {
-    const currentBac2 = bacCalculator({
-      widmarkFactor,
-      absorptionRate,
-      eliminationRate,
-      weight,
-      drinks,
-    })
     const { graphBacData, currentBac, curBacIdx } = graphDataCalculator({
       widmarkFactor,
       absorptionRate,
@@ -37,7 +29,7 @@ export const Drinks: React.FC<DrinksProps> = ({ match, history }) => {
     })
     history.push({
       pathname: `/user/bacinfo/${match.params.id}`,
-      state: { currentBac, graphBacData, curBacIdx, currentBac2 },
+      state: { currentBac, graphBacData, curBacIdx },
     })
   }
 

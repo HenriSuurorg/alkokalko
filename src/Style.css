@@ -1728,6 +1728,7 @@ input[type="radio"]:checked + label:before {
   box-shadow: var(--primary-shadow);
   padding: 4rem 4rem;
   width: 35vw;
+  max-width: 50rem;
   justify-self: center;
 }
 
