@@ -17,6 +17,7 @@ interface Props
       currentBac: number | any
       graphBacData: number[] | any
       curBacIdx: number | any
+      soberingIdx: number | any
     }
   > {}
 
@@ -25,6 +26,7 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
   const [currentBac, setcurrentBac] = useLocalStorage("currentBac", [])
   const [graphBacData, setgraphBacData] = useLocalStorage("graphBacData", [])
   const [curBacIdx, setcurBacIdx] = useLocalStorage("curBacIdx", [])
+  const [soberingIdx, setSoberingIdx] = useLocalStorage("soberingIdx", [])
   const [modal, setModal] = useState(true)
 
   useEffect(() => {
@@ -32,6 +34,7 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
       setcurrentBac(location.state.currentBac)
       setgraphBacData(location.state.graphBacData)
       setcurBacIdx(location.state.curBacIdx)
+      setSoberingIdx(location.state.soberingIdx)
     }
   }, [location.state])
 
@@ -140,7 +143,7 @@ export const BacInfo: React.FC<Props> = ({ location, history, match }) => {
             <h2>
               Sa oled kaine umbes{" "}
               <b>
-                {soberingTime(graphBacData, curBacIdx, eliminationRate)} tunni
+                {soberingTime(graphBacData, soberingIdx, eliminationRate)} tunni
                 pärast
               </b>
             </h2>

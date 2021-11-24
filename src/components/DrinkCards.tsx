@@ -1,12 +1,12 @@
-import React from "react";
-import { drinkType } from "../types";
-import { CgMathPlus } from "react-icons/cg";
-import { DrinkTitle } from "./DrinkTitle";
+import React from "react"
+import { drinkType } from "../types"
+import { CgMathPlus } from "react-icons/cg"
+import { DrinkTitle } from "./DrinkTitle"
 
 interface DrinkCardsProps {
-  deleteDrink: (i: number) => void;
-  addDuplicateDrink: (drink: drinkType) => void;
-  drinks: drinkType[] | null;
+  deleteDrink: (i: number) => void
+  addDuplicateDrink: (drink: drinkType) => void
+  drinks: drinkType[] | null
 }
 
 export const DrinkCards: React.FC<DrinkCardsProps> = ({
@@ -15,7 +15,7 @@ export const DrinkCards: React.FC<DrinkCardsProps> = ({
   drinks,
 }) => {
   if (!drinks) {
-    return null;
+    return null
   }
   const drinksJSX = drinks.map((drink: drinkType, i: number) => {
     return (
@@ -52,8 +52,8 @@ export const DrinkCards: React.FC<DrinkCardsProps> = ({
           onClick={() => addDuplicateDrink(drink)}
         />
       </div>
-    );
-  });
+    )
+  })
 
-  return <div className="drinkcard__drinkcards">{drinksJSX}</div>;
-};
+  return <div className="drinkcard__drinkcards">{drinksJSX}</div>
+}
