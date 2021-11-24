@@ -1,13 +1,13 @@
 import React from "react"
 import Home from "./pages/Home"
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { Switch, Route, HashRouter } from "react-router-dom"
 import { User } from "./pages/User"
 import { Drinks } from "./pages/Drinks"
 import { BacInfo } from "./pages/BacInfo"
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/user" exact component={User} />
@@ -15,7 +15,7 @@ function App() {
         <Route path="/user/bacinfo/:id" exact component={BacInfo} />
         <Route path="/" render={() => <h1>404 :(</h1>} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
