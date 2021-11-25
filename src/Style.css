@@ -1259,6 +1259,7 @@ input[type="radio"]:checked + label:before {
   background-color: #f7f7f7;
   border: 0.03125rem solid #b1b4b6;
   cursor: pointer;
+  color: var(--primary-text-color);
   border-radius: 0.3125rem;
   padding: 0 0.55rem;
   font-size: 1.3rem;
