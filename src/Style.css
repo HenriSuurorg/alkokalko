@@ -653,6 +653,7 @@ input[type="radio"]:checked + label:before {
     border-radius: 0.3rem;
     padding: 0 0.55rem;
     font-size: 1rem;
+    color: var(--primary-text-color);
 
     /*  replacing the default arrow  */
     appearance: none;
@@ -662,6 +663,10 @@ input[type="radio"]:checked + label:before {
     background-image: url(./icons/expand.svg);
     background-repeat: no-repeat;
     background-position: right 1.03125rem top 50%;
+  }
+
+  .userform__select-input:focus {
+    outline: none;
   }
 
   /*  button  */

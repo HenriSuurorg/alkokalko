@@ -133,6 +133,8 @@ export const User: React.FC<UserProps> = ({ history }) => {
               onBlur={handleBlur}
               value={values.weight}
               type="text"
+              pattern="[0-9]*"
+              inputMode="numeric"
               className=" userform__text-input userform__g4"
             />
 
@@ -151,6 +153,8 @@ export const User: React.FC<UserProps> = ({ history }) => {
               onBlur={handleBlur}
               value={values.height}
               type="text"
+              pattern="[0-9]*"
+              inputMode="numeric"
               className=" userform__text-input userform__g6"
             />
 
@@ -169,6 +173,8 @@ export const User: React.FC<UserProps> = ({ history }) => {
               onBlur={handleBlur}
               value={values.age}
               type="text"
+              pattern="[0-9]*"
+              inputMode="numeric"
               className=" userform__text-input userform__g8"
             />
             <hr className="userform__line userform__line2" />

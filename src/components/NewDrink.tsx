@@ -96,6 +96,8 @@ export const NewDrink: React.FC<Props> = ({
                   onBlur={handleBlur}
                   value={values.volume}
                   type="text"
+                  pattern="[0-9]*"
+                  inputMode="numeric"
                   className="newdrink__volume-input"
                 />
                 <h3>ml</h3>
@@ -118,6 +120,8 @@ export const NewDrink: React.FC<Props> = ({
                   onBlur={handleBlur}
                   value={values.abv}
                   type="text"
+                  pattern="[0-9]*"
+                  inputMode="numeric"
                   className="newdrink__abv-input"
                 />
                 <h3>%</h3>
@@ -143,6 +147,8 @@ export const NewDrink: React.FC<Props> = ({
                   onBlur={handleBlur}
                   value={values.timePassed}
                   type="text"
+                  pattern="[0-9]*"
+                  inputMode="numeric"
                   className="newdrink__timePassed-input"
                 />
                 <h3>tundi</h3>
