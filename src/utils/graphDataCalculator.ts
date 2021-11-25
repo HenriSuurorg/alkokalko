@@ -1,7 +1,6 @@
 import { drinkType } from "../types"
 import { drinkSorter } from "./drinkSorter"
 import { passedDrinksCounter } from "./passedDrinkCounter"
-import { soberingTime } from "./soberingTime"
 
 // https://docs.google.com/document/d/1J8gMJdqBdbox462-ERcvf5BYWfcBHa0Hvqrgw0T2bLs/edit
 
@@ -83,10 +82,7 @@ export const graphDataCalculator = ({
       Time += 0.01
     }
   }
-  console.log(justDrank)
   let soberingIdx = justDrank ? curBacIdx + 30 : curBacIdx
-  console.log(soberingIdx)
-  console.log(curBacIdx)
   return {
     graphBacData,
     currentBac: graphBacData[curBacIdx],
