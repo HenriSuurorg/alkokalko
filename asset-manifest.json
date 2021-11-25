@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/alkokalko/static/css/main.30033992.chunk.css",
+    "main.css": "/alkokalko/static/css/main.cdceeb13.chunk.css",
     "main.js": "/alkokalko/static/js/main.c3882ace.chunk.js",
     "main.js.map": "/alkokalko/static/js/main.c3882ace.chunk.js.map",
     "runtime-main.js": "/alkokalko/static/js/runtime-main.6887c0fa.js",
@@ -8,16 +8,16 @@
     "static/js/2.fde04783.chunk.js": "/alkokalko/static/js/2.fde04783.chunk.js",
     "static/js/2.fde04783.chunk.js.map": "/alkokalko/static/js/2.fde04783.chunk.js.map",
     "index.html": "/alkokalko/index.html",
-    "precache-manifest.261bbba4fbe2b9f822c8c0b3a8716d6b.js": "/alkokalko/precache-manifest.261bbba4fbe2b9f822c8c0b3a8716d6b.js",
+    "precache-manifest.0f3d601f9c0d948099674f04513b571f.js": "/alkokalko/precache-manifest.0f3d601f9c0d948099674f04513b571f.js",
     "service-worker.js": "/alkokalko/service-worker.js",
-    "static/css/main.30033992.chunk.css.map": "/alkokalko/static/css/main.30033992.chunk.css.map",
+    "static/css/main.cdceeb13.chunk.css.map": "/alkokalko/static/css/main.cdceeb13.chunk.css.map",
     "static/js/2.fde04783.chunk.js.LICENSE.txt": "/alkokalko/static/js/2.fde04783.chunk.js.LICENSE.txt",
     "static/media/Style.css": "/alkokalko/static/media/expand.9744bb8d.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.6887c0fa.js",
     "static/js/2.fde04783.chunk.js",
-    "static/css/main.30033992.chunk.css",
+    "static/css/main.cdceeb13.chunk.css",
     "static/js/main.c3882ace.chunk.js"
   ]
 }
