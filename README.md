@@ -12,7 +12,7 @@ Jones, A W 2010, ‘Evidence-based survey of the elimination rates of ethanol fr
 Perry, P J, Dorougdar, S & Van Dyke, P 2017, ‘Ethanol Forensic Toxicology’, *Journal of the American Academy of Psychiatry and the Law*, vol. 45, no. 4, pp 429-438
 
 ## Equation
-![Equation](https://github.com/HenriSuurorg/alkokalko/blob/master/equation.svg)
+![Equation](https://github.com/HenriSuurorg/alkokalko/blob/master/equation.png)
 
 Where:
 - A - mass of ingested alcohol[kg]
