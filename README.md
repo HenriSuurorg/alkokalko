@@ -1,7 +1,7 @@
 # AlkoKalko - BAC Calculator
 
 > a React web application that calculates the user’s estimated blood alcohol concentration using forensic equations that account for physiological factors and the exact drinks consumed.
-
+> [Click here](https://henrisuurorg.github.io/alkokalko/#/) to visit
 ## Sources
 Searle, J 2015, ‘Alcohol calculations and their uncertainty`, *Medicine, Science, and the Law*, vol. 55, no. 1, pp. 58-64
 
